@@ -232,3 +232,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/Jobs.CompanyApi.pdb
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/Jobs.CompanyApi.genruntimeconfig.cache
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/ref/Jobs.CompanyApi.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/Jobs.CompanyApi.sourcelink.json

@@ -452,5 +452,7 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
         .AllowAnonymous()
         .RequireRateLimiting("FixedWindow");
 
-app.Run();
+    app.UseSerilogRequestLogging();
+
+    app.Run();
 

@@ -13,3 +13,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/refint/Jobs.Entities.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.pdb
 /home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/ref/Jobs.Entities.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.sourcelink.json

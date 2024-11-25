@@ -146,3 +146,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.AccountApi/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.AccountApi/bin/Debug/net8.0/Jobs.Entities.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.AccountApi/bin/Debug/net8.0/Jobs.Entities.pdb
+/home/jupiter/RiderProjects/JobProject/Jobs.AccountApi/obj/Debug/net8.0/Jobs.AccountApi.sourcelink.json

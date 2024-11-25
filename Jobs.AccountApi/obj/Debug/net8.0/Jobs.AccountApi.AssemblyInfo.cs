@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jobs.AccountApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a7b1074e58fbf9e98e06f8a01355be1450c6a35")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jobs.AccountApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jobs.AccountApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

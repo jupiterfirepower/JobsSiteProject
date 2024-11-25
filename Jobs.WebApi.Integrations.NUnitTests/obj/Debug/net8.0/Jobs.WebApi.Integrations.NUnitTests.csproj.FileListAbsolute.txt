@@ -539,3 +539,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.WebApi.Integrations.NUnitTests/obj/Debug/net8.0/Jobs.WebApi.Integrations.NUnitTests.pdb
 /home/jupiter/RiderProjects/JobProject/Jobs.WebApi.Integrations.NUnitTests/obj/Debug/net8.0/Jobs.WebApi.Integrations.NUnitTests.genruntimeconfig.cache
 /home/jupiter/RiderProjects/JobProject/Jobs.WebApi.Integrations.NUnitTests/obj/Debug/net8.0/ref/Jobs.WebApi.Integrations.NUnitTests.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.WebApi.Integrations.NUnitTests/obj/Debug/net8.0/Jobs.WebApi.Integrations.NUnitTests.sourcelink.json

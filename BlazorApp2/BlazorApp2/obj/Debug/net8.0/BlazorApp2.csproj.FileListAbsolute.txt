@@ -173,3 +173,4 @@
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/bin/Debug/net8.0/Serilog.Sinks.File.dll
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/bin/Debug/net8.0/Serilog.Sinks.OpenTelemetry.dll
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/obj/Debug/net8.0/BlazorApp2.MvcApplicationPartsAssemblyInfo.cs
+/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/obj/Debug/net8.0/BlazorApp2.sourcelink.json

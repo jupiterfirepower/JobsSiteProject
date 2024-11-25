@@ -1026,3 +1026,4 @@
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2.Client/obj/Debug/net8.0/compressed/8u5emip3ft.gz
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2.Client/obj/Debug/net8.0/compressed/p271wuicto.gz
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2.Client/obj/Debug/net8.0/compressed/8x64gedu8k.gz
+/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2.Client/obj/Debug/net8.0/BlazorApp2.Client.sourcelink.json

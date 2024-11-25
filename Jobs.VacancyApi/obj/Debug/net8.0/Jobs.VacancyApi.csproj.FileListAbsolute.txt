@@ -226,3 +226,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/Jobs.VacancyApi.pdb
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/Jobs.VacancyApi.genruntimeconfig.cache
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/ref/Jobs.VacancyApi.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/Jobs.VacancyApi.sourcelink.json

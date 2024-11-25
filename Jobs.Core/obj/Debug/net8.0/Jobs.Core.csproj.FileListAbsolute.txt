@@ -10,3 +10,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.Core/obj/Debug/net8.0/refint/Jobs.Core.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.Core/obj/Debug/net8.0/Jobs.Core.pdb
 /home/jupiter/RiderProjects/JobProject/Jobs.Core/obj/Debug/net8.0/ref/Jobs.Core.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Core/obj/Debug/net8.0/Jobs.Core.sourcelink.json

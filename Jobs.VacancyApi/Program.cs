@@ -1,6 +1,7 @@
 using System.Reflection;
 using Asp.Versioning;
 using AutoMapper;
+using Jobs.Common.Constants;
 using Jobs.Common.Contracts;
 using Jobs.Common.Extentions;
 using Jobs.Common.Helpers;
@@ -199,15 +200,16 @@ try
         await dbContext.Database.EnsureCreatedAsync();
     }
 
-// Request Logging Middleware
+    // Request Logging Middleware
     app.Use(async (context, next) =>
     {
         try
         {
-            var key = context.Request.Headers["x-api-key"];
-            var nonce = context.Request.Headers["s-nonce"];
+            var key = context.Request.Headers[HttpHeaderKeys.XApiHeaderKey];
+            var nonce = context.Request.Headers[HttpHeaderKeys.SNonceHeaderKey];
+            var secret = context.Request.Headers[HttpHeaderKeys.XApiSecretHeaderKey];
             Log.Information($"Incoming Request: {context.Request.Protocol} {context.Request.Method} {context.Request.Path}{context.Request.QueryString}");
-            Log.Information($"Key - {key}, Nonce - {nonce}");
+            Log.Information($"Key - {key}, Nonce - {nonce}, Secret - {secret}");
         }
         catch (Exception)
         {
@@ -231,8 +233,8 @@ try
                )
             {
                 var apiKey = await service.GenerateApiKeyAsync();
-                var cryptedApiKey = cryptService.Encrypt(apiKey.Key);
-                context.Response.Headers.Append("x-api-key", cryptedApiKey);
+                var cryptApiKey = cryptService.Encrypt(apiKey.Key);
+                context.Response.Headers.Append(HttpHeaderKeys.XApiHeaderKey, cryptApiKey);
             }
         });
         await next.Invoke();
@@ -246,32 +248,56 @@ try
         .ReportApiVersions()
         .Build();
     
+    bool IsBadRequest(IHttpContextAccessor httpContextAccessor, 
+        IEncryptionService cryptService,
+        ISignedNonceService signedNonceService,
+        IApiKeyService service,
+        string apiKey, 
+        string signedNonce,
+        string apiSecret)
+    {
+        if (!UserAgentConstant.AppUserAgent.Equals(httpContextAccessor.HttpContext?.Request.Headers.UserAgent))
+        {
+            return true;
+        }
+        
+        var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
+
+        if (builder.Environment.IsDevelopment())
+        {
+            longNonce = DateTime.UtcNow.Ticks;
+        }
+
+        if (!resultParse)
+        {
+            return true;
+        }
+            
+        // apiKey must be in Base64
+        var realApiKey = cryptService.Decrypt(apiKey);
+        var realApiSecret = cryptService.Decrypt(apiSecret);
+            
+        if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
     app.MapGet("api/v{version:apiVersion}/categories", async (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -291,27 +317,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -332,32 +345,19 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
             
             if (id <= 0)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
             {
                 return Results.BadRequest();
             }
@@ -377,27 +377,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -418,32 +405,19 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
             
             if (id <= 0)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
             {
                 return Results.BadRequest();
             }
@@ -464,27 +438,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -504,27 +465,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -552,27 +500,14 @@ try
             [FromServices] ISender mediatr, 
             [FromServices] IPublisher publisher, 
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -607,27 +542,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }
@@ -657,27 +579,14 @@ try
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
-            [FromHeader(Name = "x-api-key")] string apiKey,
-            [FromHeader(Name = "s-nonce")] string signedNonce,
-            [FromHeader(Name = "x-api-secret")] string apiSecret) =>
+            [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
         {
-            var (longNonce ,resultParse) = signedNonceService.IsSignedNonceValid(signedNonce);
-
-            if (builder.Environment.IsDevelopment())
-            {
-                longNonce = DateTime.UtcNow.Ticks;
-            }
-
-            if (!resultParse)
-            {
-                return Results.BadRequest();
-            }
-            
-            // apiKey must be in Base64
-            var realApiKey = cryptService.Decrypt(apiKey);
-            var realApiSecret = cryptService.Decrypt(apiSecret);
- 
-            if (!service.IsValid(realApiKey, longNonce, realApiSecret))
+            if (IsBadRequest(httpContextAccessor, 
+                    cryptService, signedNonceService, service, 
+                    apiKey, signedNonce, apiSecret))
             {
                 return Results.BadRequest();
             }

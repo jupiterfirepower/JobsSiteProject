@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "B91IpUSEloM=",
+  "success": true,
+  "projectFilePath": "/home/jupiter/RiderProjects/JobProject/Jobs.Entities/Jobs.Entities.csproj",
+  "expectedPackageFiles": [
+    "/home/jupiter/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512"
+  ],
+  "logs": []
+}

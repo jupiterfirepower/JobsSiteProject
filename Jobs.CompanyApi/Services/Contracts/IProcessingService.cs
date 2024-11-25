@@ -1,0 +1,15 @@
+using Jobs.CompanyApi.DTOModels;
+
+namespace Jobs.CompanyApi.Services.Contracts;
+
+public interface IProcessingService
+{
+    Task<List<CompanyDto>> GetCompanies();
+    Task<CompanyDto> GetCompanyById(int id);
+
+    Task<CompanyDto> CreateCompany(CompanyInDto vacancy);
+
+    Task<int> DeleteCompany(int id);
+    //Task<int> HideCompany(int id);
+    Task<int> UpdateCompany(CompanyInDto vacancy);
+}

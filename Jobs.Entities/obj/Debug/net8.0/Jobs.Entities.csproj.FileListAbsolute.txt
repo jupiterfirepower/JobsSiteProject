@@ -1,0 +1,15 @@
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/bin/Debug/net8.0/Jobs.Entities.deps.json
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/bin/Debug/net8.0/Jobs.Entities.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/bin/Debug/net8.0/Jobs.Entities.pdb
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.xml
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.csproj.AssemblyReference.cache
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.GeneratedMSBuildEditorConfig.editorconfig
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.AssemblyInfoInputs.cache
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.AssemblyInfo.cs
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.csproj.CoreCompileInputs.cache
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Ent.323F874A.Up2Date
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/refint/Jobs.Entities.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/Jobs.Entities.pdb
+/home/jupiter/RiderProjects/JobProject/Jobs.Entities/obj/Debug/net8.0/ref/Jobs.Entities.dll

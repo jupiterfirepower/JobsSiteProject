@@ -1,0 +1,81 @@
+{
+  "Files": [
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/obj/Debug/net8.0/scopedcss/projectbundle/BlazorApp2.bundle.scp.css",
+      "PackagePath": "staticwebassets/BlazorApp2.bundle.scp.css"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/css/tailwind.css",
+      "PackagePath": "staticwebassets/css/tailwind.css"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/0f5a6683-f9cf-4d63-b4bd-680ff070fdf8.png",
+      "PackagePath": "staticwebassets/logo/0f5a6683-f9cf-4d63-b4bd-680ff070fdf8.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/1560425373389.jpeg",
+      "PackagePath": "staticwebassets/logo/1560425373389.jpeg"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/1673282991777.png",
+      "PackagePath": "staticwebassets/logo/1673282991777.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/1__iY94gAe0BxtPK-E0z_bLg.png",
+      "PackagePath": "staticwebassets/logo/1__iY94gAe0BxtPK-E0z_bLg.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/77502b11-d63f-48b5-940b-25e8363acfa6.png",
+      "PackagePath": "staticwebassets/logo/77502b11-d63f-48b5-940b-25e8363acfa6.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/bigdata-projects-architecture.png",
+      "PackagePath": "staticwebassets/logo/bigdata-projects-architecture.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/bmlp_1101.png",
+      "PackagePath": "staticwebassets/logo/bmlp_1101.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/image-8.png",
+      "PackagePath": "staticwebassets/logo/image-8.png"
+    },
+    {
+      "Id": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/wwwroot/logo/keycloak1.png",
+      "PackagePath": "staticwebassets/logo/keycloak1.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.BlazorApp2.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.BlazorApp2.props",
+      "PackagePath": "build\\BlazorApp2.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.BlazorApp2.props",
+      "PackagePath": "buildMultiTargeting\\BlazorApp2.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BlazorApp2.props",
+      "PackagePath": "buildTransitive\\BlazorApp2.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

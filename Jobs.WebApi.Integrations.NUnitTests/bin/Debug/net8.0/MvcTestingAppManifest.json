@@ -1,0 +1,6 @@
+{
+  "Jobs.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/jupiter\/RiderProjects\/JobProject\/Jobs.Common",
+  "Jobs.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/jupiter\/RiderProjects\/JobProject\/Jobs.Core",
+  "Jobs.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/jupiter\/RiderProjects\/JobProject\/Jobs.Entities",
+  "Jobs.VacancyApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/jupiter\/RiderProjects\/JobProject\/Jobs.VacancyApi"
+}

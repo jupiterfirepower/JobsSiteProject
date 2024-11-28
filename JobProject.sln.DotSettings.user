@@ -20,6 +20,7 @@
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbApiKeyRepositoryUnitTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbPasswordRepositoryUnitTests.AddCredentialPasswordTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbPasswordRepositoryUnitTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=997806b8_002D77f7_002D4066_002Db2c5_002D1301c8abf0d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="JobsWebApiIntegrationsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -39,6 +40,8 @@
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbAdditionalDbOperationsUnitTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbApiKeyRepositoryUnitTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbPasswordStorageProviderUnitTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests.RepositoryAddVacancyTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

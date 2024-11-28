@@ -9,6 +9,7 @@ using Jobs.Common.Options;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.Extentions;
+using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
 using Jobs.Core.Providers;
@@ -71,6 +72,7 @@ try
     
     
     builder.Services.AddScoped<IApiKeyStorageServiceProvider, MemoryApiKeyStorageServiceProvider>();
+    builder.Services.AddScoped<IApiKeyManagerServiceProvider, ApiKeyManagerServiceProvider>();
     builder.Services.AddScoped<ISecretApiKeyRepository, SecretApiKeyRepository>();
     builder.Services.AddScoped<IProcessingService, ProcessingService>();
     builder.Services.AddScoped<IApiKeyService, ApiKeyService>();

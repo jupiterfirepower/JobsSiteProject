@@ -5,7 +5,7 @@ using Jobs.Core.Helpers;
 
 namespace Jobs.Core.Services;
 
-public class ApiKeyService(IApiKeyStorageServiceProvider repository, ISecretApiService secretService) : IApiKeyService
+public class ApiKeyService(IApiKeyManagerServiceProvider managerServiceProvider, ISecretApiService secretService) : IApiKeyService
 {
     public async Task<ApiKey> GenerateApiKeyAsync()
     {
@@ -15,7 +15,7 @@ public class ApiKeyService(IApiKeyStorageServiceProvider repository, ISecretApiS
             Expiration = DateTime.UtcNow.AddMinutes(30)
         };
         
-        var result = await repository.AddApiKeyAsync(apiKey);
+        var result = await managerServiceProvider.AddApiKeyAsync(apiKey);
         Console.WriteLine($"GenerateApiKeyAsync {result}");
         return apiKey;
     }
@@ -27,7 +27,7 @@ public class ApiKeyService(IApiKeyStorageServiceProvider repository, ISecretApiS
             //(!string.IsNullOrEmpty(apiKey) && apiKey.Length < 20))
             return false;
         
-        return repository.IsKeyValid(apiKey);
+        return managerServiceProvider.IsKeyValid(apiKey);
     }
     
     public bool IsNonceValid(long nonce)
@@ -42,19 +42,19 @@ public class ApiKeyService(IApiKeyStorageServiceProvider repository, ISecretApiS
     
     private bool IsSecretApiKeyValid(string realSecretApiKey) => secretService.SecretApi.Equals(realSecretApiKey);
     
-    /*public bool IsValid(string apiKey, long nonce, string realSecretApiKey) => IsValidApiKey(apiKey) 
+    public bool IsValid(string apiKey, long nonce, string realSecretApiKey) => IsValidApiKey(apiKey) 
                                                                                && IsNonceValid(nonce) 
-                                                                               && IsSecretApiKeyValid(realSecretApiKey);*/
+                                                                               && IsSecretApiKeyValid(realSecretApiKey);
     
-    public bool IsValid(string apiKey, long nonce, string realSecretApiKey)
-    { 
-        var t= IsValidApiKey(apiKey);
-        Console.WriteLine($"ApiKey Valid - {t}");
-        var t1 = IsNonceValid(nonce);
-        Console.WriteLine($"Nonce Valid - {t1}");
-        var t2 = IsSecretApiKeyValid(realSecretApiKey);
-        Console.WriteLine($"SecretKey Valid - {t2}");
-        return t && t1 && t2;
-    } 
-    
+/*public bool IsValid(string apiKey, long nonce, string realSecretApiKey)
+{
+    var t= IsValidApiKey(apiKey);
+    Console.WriteLine($"ApiKey Valid - {t}");
+    var t1 = IsNonceValid(nonce);
+    Console.WriteLine($"Nonce Valid - {t1}");
+    var t2 = IsSecretApiKeyValid(realSecretApiKey);
+    Console.WriteLine($"SecretKey Valid - {t2}");
+    return t && t1 && t2;
+}*/
+
 }

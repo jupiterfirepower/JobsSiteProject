@@ -3762,6 +3762,19 @@
           }
         }
       },
+      "UnQLiteNet/1.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net45/UnQLiteNet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/UnQLiteNet.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Jobs.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -3813,7 +3826,8 @@
           "OpenTelemetry.Instrumentation.Runtime": "1.9.0",
           "PasswordGenerator": "2.1.0",
           "Serilog.AspNetCore": "8.0.2",
-          "Serilog.Sinks.OpenTelemetry": "4.1.0"
+          "Serilog.Sinks.OpenTelemetry": "4.1.0",
+          "UnQLiteNet": "1.0.5"
         },
         "compile": {
           "bin/placeholder/Jobs.Core.dll": {}
@@ -10071,6 +10085,21 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "UnQLiteNet/1.0.5": {
+      "sha512": "ENmh7cLTJ3w1KzCDU9zWTey3tAym9Oz6cpG2p04hM8nM9EDVyfyTUqdtLia7R8VO1cfYYmGIgENqbTxyZ47ztw==",
+      "type": "package",
+      "path": "unqlitenet/1.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/x64/unqlite.dll",
+        "build/x86/unqlite.dll",
+        "lib/net45/UnQLiteNet.dll",
+        "lib/net45/UnQLiteNet.xml",
+        "unqlitenet.1.0.5.nupkg.sha512",
+        "unqlitenet.nuspec"
+      ]
+    },
     "Jobs.Common/1.0.0": {
       "type": "project",
       "path": "../Jobs.Common/Jobs.Common.csproj",
@@ -10262,5 +10291,17 @@
         "runtimeIdentifierGraphPath": "/home/jupiter/.dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'UnQLiteNet 1.0.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "UnQLiteNet",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

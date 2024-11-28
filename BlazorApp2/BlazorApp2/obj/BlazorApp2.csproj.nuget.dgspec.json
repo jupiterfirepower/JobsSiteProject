@@ -441,6 +441,10 @@
             "Serilog.Sinks.OpenTelemetry": {
               "target": "Package",
               "version": "[4.1.0, )"
+            },
+            "UnQLiteNet": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             }
           },
           "imports": [

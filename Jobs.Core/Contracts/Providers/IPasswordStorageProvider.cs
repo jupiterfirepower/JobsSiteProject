@@ -6,5 +6,5 @@ public interface IPasswordStorageProvider
 {
     void AddUserCredential(ExternalUserCredential data);
 
-    ExternalUserCredential GetUserCredential(string emil);
+    ExternalUserCredential GetUserCredential(string email);
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4cglG7ihuy4=",
+  "dgSpecHash": "XY7Yw8Ort/k=",
   "success": true,
   "projectFilePath": "/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/Jobs.CoreAndWebApi.NUnitTests.csproj",
   "expectedPackageFiles": [
@@ -228,7 +228,19 @@
     "/home/jupiter/.nuget/packages/system.text.json/8.0.4/system.text.json.8.0.4.nupkg.sha512",
     "/home/jupiter/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/system.threading.ratelimiting/8.0.0/system.threading.ratelimiting.8.0.0.nupkg.sha512",
-    "/home/jupiter/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512"
+    "/home/jupiter/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/unqlitenet/1.0.5/unqlitenet.1.0.5.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'UnQLiteNet 1.0.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "UnQLiteNet",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

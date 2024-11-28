@@ -15,6 +15,7 @@ using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.DataModel;
 using Jobs.Core.Extentions;
+using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
 using Jobs.Core.Providers;
@@ -127,6 +128,7 @@ var storage = new MemoryApiKeyStorageServiceProvider();
 storage.AddApiKey(new ApiKey{ Key = accountApiKey, Expiration = null });
 
 builder.Services.AddScoped<IApiKeyStorageServiceProvider, MemoryApiKeyStorageServiceProvider>();
+builder.Services.AddScoped<IApiKeyManagerServiceProvider, ApiKeyManagerServiceProvider>();
 builder.Services.AddScoped<IKeycloakAccountService, KeycloakAccountService>();
 builder.Services.AddScoped<IApiKeyService, ApiKeyService>();
 builder.Services.AddScoped<IEncryptionService, NaiveEncryptionService>(p => 

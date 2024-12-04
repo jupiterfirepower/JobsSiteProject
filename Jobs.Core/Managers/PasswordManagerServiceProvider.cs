@@ -3,7 +3,7 @@ using Jobs.Core.DataModel;
 
 namespace Jobs.Core.Managers;
 
-public class PasswordManagerServiceProvider(IPasswordStorageProvider backendProvider) : IPasswordStorageProvider
+public class PasswordManagerServiceProvider(IPasswordStorageProvider backendProvider) : IPasswordManagerServiceProvider
 {
     public void AddUserCredential(ExternalUserCredential data) => backendProvider.AddUserCredential(data);
 

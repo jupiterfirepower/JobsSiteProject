@@ -2,8 +2,10 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Jobs.AccountApi.Contracts;
 using Jobs.Common.Responses;
+using Jobs.Common.SerializationSettings;
 using Jobs.Entities.DataModel;
 using Jobs.Entities.Responses;
 using Keycloak.Client.Models;
@@ -199,15 +201,7 @@ public class KeycloakAccountService(IHttpClientFactory httpClientFactory,
         var userId = resultUser.Length > 2 ? resultUser.Substring(8, 36) : string.Empty;
         Log.Information($"UserId - {userId}");
         
-        
-        var jsonSerializerOptions = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            IncludeFields = true,
-            UnmappedMemberHandling = 0 // 0 - Skip, 1 - Disallow
-        };
-
-        var userInfo = JsonSerializer.Deserialize<List<UserRepresentation>>(resultUser, jsonSerializerOptions);
+        var userInfo = JsonSerializer.Deserialize<List<UserRepresentation>>(resultUser, JsonSerializerSetting.JsonSerializerOptions);
         Log.Information($"userInfo - {userInfo != null}, count - {userInfo?.Count}");
         
         return userInfo?.FirstOrDefault();

@@ -2,6 +2,7 @@
 
 using System.Security.Claims;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using BlazorApp2.Components;
 using BlazorApp2.Contracts;
 using BlazorApp2.Contracts.Clients;
@@ -11,10 +12,13 @@ using BlazorApp2.Services.Clients;
 using BlazorApp2.Settings;
 using Jobs.Common.Extentions;
 using Jobs.Common.Options;
+using Jobs.Common.SerializationSettings;
 using Jobs.Core.Contracts;
+using Jobs.Core.Contracts.Providers;
 using Jobs.Core.DataModel;
 using Jobs.Core.Extentions;
 using Jobs.Core.Helpers;
+using Jobs.Core.Managers;
 using Jobs.Core.Providers;
 using Jobs.Core.Services;
 using Jobs.Core.Settings;
@@ -62,6 +66,11 @@ builder.Services.AddHttpClient<ICompanyClientService, CompanyClientService>()
 
 builder.Services.AddHttpClient<IVacancyClientService, VacancyClientService>()
     .AddHttpClientConfigurations();
+
+builder.Services.AddScoped<IPasswordStorageProvider, MemoryPasswordStorageProvider>();
+builder.Services.AddScoped<IPasswordManagerServiceProvider, PasswordManagerServiceProvider>();
+
+
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 //builder.Services.AddScoped<ICompanyService>(x => new CompanyService(companyServiceApiUrl,  serviceApiKey, companySecretKey));
@@ -219,7 +228,8 @@ app.MapRazorComponents<App>()
 // Add routes for callback handling
 app.MapGet("/oauth", async (string code, string scope, 
     [FromServices] IAccountService service,
-    [FromServices] IEncryptionService cryptService)=>
+    [FromServices] IEncryptionService cryptService,
+    [FromServices] IPasswordManagerServiceProvider managerServiceProvider) =>
 {
     Console.WriteLine("oauth");
     Console.WriteLine($"Code : {code}, Scope: {scope}");
@@ -229,28 +239,21 @@ app.MapGet("/oauth", async (string code, string scope,
     var userInfo = await googleAuth.GetUserInfo(googleToken.AccessToken);
     Console.WriteLine($"UserInfo : {userInfo}");
     
-    var jsonSerializerOptions = new JsonSerializerOptions
-    {
-        WriteIndented = true,
-        IncludeFields = true,
-        UnmappedMemberHandling = 0 // 0 - Skip, 1 - Disallow
-    };
-
-    var userInfoData = JsonSerializer.Deserialize<GoogleUserInfo>(userInfo, jsonSerializerOptions)!;
+    var userInfoData = JsonSerializer.Deserialize<GoogleUserInfo>(userInfo, JsonSerializerSetting.JsonSerializerOptions )!;
     Console.WriteLine($"GoogleUserInfo : {userInfoData != null}");
     var gen = new PasswordSaltGeneratorHelper();
     //var pwd = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(gen.GenerateKeycloakGooglePassword()));
     var pwd = gen.GenerateKeycloakGooglePassword();
     //var pwdc = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(pwd));
     Console.WriteLine($"Email : {userInfoData.Email}, Pwd : {pwd}");
-    var storage = new MemoryPasswordStorageProvider(cryptService);
-    storage.AddUserCredential(new ExternalUserCredential { Email = userInfoData.Email, Password = pwd });
+    
+    managerServiceProvider.AddUserCredential(new ExternalUserCredential { Email = userInfoData.Email, Password = pwd });
     //const string defPwd = "dfvgbh12347890";
     var result = await service.RegisterAsync(userInfoData.Email, pwd, userInfoData.GivenName, userInfoData.FamilyName);
     bool logged = false;
 
     var currentPassword = !result.IsAdded
-        ? storage.GetUserCredential(userInfoData.Email).Password
+        ? managerServiceProvider.GetUserCredential(userInfoData.Email).Password
         : pwd;
     
     //var currentPassword = pwd;

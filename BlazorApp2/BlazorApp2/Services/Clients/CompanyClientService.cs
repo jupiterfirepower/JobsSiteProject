@@ -1,8 +1,10 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using BlazorApp2.Contracts.Clients;
 using BlazorApp2.Settings;
 using Jobs.Common.Helpers;
+using Jobs.Common.SerializationSettings;
 using Jobs.Entities.DataModel;
 using Jobs.Entities.DTO;
 using Microsoft.Extensions.Options;
@@ -13,12 +15,7 @@ public class CompanyClientService(HttpClient client, IOptions<ServicesSettings> 
 {
     private string? _lastApiKey;
     
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
-    {
-        WriteIndented = true,
-        IncludeFields = true,
-        UnmappedMemberHandling = 0 // Skip  1 - Disallow(exception)
-    };
+    private readonly JsonSerializerOptions _jsonSerializerOptions = JsonSerializerSetting.JsonSerializerOptions;
     
     public async Task<CompanyDataInDto> AddCompanyAsync(CompanyDataInDto company)
     {

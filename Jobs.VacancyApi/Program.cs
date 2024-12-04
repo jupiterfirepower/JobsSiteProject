@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Asp.Versioning;
 using AutoMapper;
@@ -293,9 +294,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -320,9 +324,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -348,9 +355,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -380,9 +390,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -408,9 +421,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -441,9 +457,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -468,9 +487,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -503,9 +525,12 @@ try
             [FromServices] IPublisher publisher, 
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -545,9 +570,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
@@ -582,9 +610,12 @@ try
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 

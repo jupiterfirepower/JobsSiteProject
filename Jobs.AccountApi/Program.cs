@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Asp.Versioning;
@@ -311,9 +312,12 @@ app.MapPost("api/v{version:apiVersion}/login", async ([FromBody] LoginUser user,
         [FromServices] IEncryptionService cryptService,
         [FromServices] ISignedNonceService signedNonceService,
         [FromServices] IHttpContextAccessor httpContextAccessor,
-        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
         Log.Information($"UserName: {user.UserName} , Password: {user.Password}");
         Console.WriteLine($"UserAgent - {httpContextAccessor.HttpContext?.Request.Headers.UserAgent}");
@@ -354,9 +358,12 @@ app.MapPost("api/v{version:apiVersion}/logout", async ([FromBody] LogoutUser use
         [FromServices] IEncryptionService cryptService,
         [FromServices] ISignedNonceService signedNonceService,
         [FromServices] IHttpContextAccessor httpContextAccessor,
-        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
         Log.Information($"User Name: {user.Username}");
         Console.WriteLine($"UserAgent - {httpContextAccessor.HttpContext?.Request.Headers.UserAgent}");
@@ -389,9 +396,12 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
         [FromServices] IEncryptionService cryptService,
         [FromServices] ISignedNonceService signedNonceService,
         [FromServices] IHttpContextAccessor httpContextAccessor,
-        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)] string apiKey,
-        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)] string signedNonce,
-        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)] string apiSecret) =>
+        [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+        [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+        [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+         StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
         Log.Information($"User Email: {user.Email} , Password: {user.Password}");
         Console.WriteLine($"UserAgent - {httpContextAccessor.HttpContext?.Request.Headers.UserAgent}");
@@ -424,12 +434,12 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISignedNonceService signedNonceService,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey)]
-            string apiKey,
-            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey)]
-            string signedNonce,
-            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey)]
-            string apiSecret) =>
+            [FromHeader(Name = HttpHeaderKeys.XApiHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiHeaderKeyMinLength)] string apiKey,
+            [FromHeader(Name = HttpHeaderKeys.SNonceHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.SNonceHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.SNonceHeaderKeyMinLength)] string signedNonce,
+            [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
+             StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
             Log.Information($"Get token by refresh token!");
             Console.WriteLine($"UserAgent - {httpContextAccessor.HttpContext?.Request.Headers.UserAgent}");

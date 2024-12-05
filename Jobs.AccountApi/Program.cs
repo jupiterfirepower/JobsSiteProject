@@ -16,6 +16,7 @@ using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.DataModel;
 using Jobs.Core.Extentions;
+using Jobs.Core.Handlers;
 using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
@@ -180,6 +181,9 @@ builder.Services.AddHttpsRedirection(options =>
     options.HttpsPort = 443;
 });
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 CorsSettings corsSettings = new();
 
 builder.Configuration
@@ -208,7 +212,10 @@ app.UseHttpsRedirection();
 
 app.UseResponseCompression();
 app.UseForwardedHeaders();
-app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["AdminSafeList"]);
+app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["HostsSafeList"]);
+
+// Global Exception Handler.
+app.UseExceptionHandler();
 
 // Get the Automapper, we can share this too
 var mapper = app.Services.GetService<IMapper>();

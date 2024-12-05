@@ -16,8 +16,8 @@ public class PostgresApiKeyStorageServiceProviderUnitTests
     {
         var services = new ServiceCollection();
 
-        services.AddScoped<IApiKeyStoreRepository, DapperApiKeyRepository>(x=>
-            new DapperApiKeyRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd"));
+        services.AddScoped<IApiKeyStoreRepository, PostgresDapperApiKeyRepository>(x=>
+            new PostgresDapperApiKeyRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd"));
         services.AddScoped<IApiKeyStorageServiceProvider, PostgresApiKeyStorageServiceProvider>();
         
 

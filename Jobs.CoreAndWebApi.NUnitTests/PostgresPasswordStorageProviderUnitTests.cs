@@ -11,7 +11,7 @@ public class PostgresPasswordStorageProviderUnitTests
     [SetUp]
     public void Setup()
     {
-        var repository = new DapperPasswordRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10;");
+        var repository = new PostgresDapperPasswordRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10;");
         _storageProvider = new PostgresPasswordStorageProvider(repository);
     }
     

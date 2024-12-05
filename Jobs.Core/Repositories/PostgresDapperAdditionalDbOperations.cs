@@ -3,11 +3,11 @@ using Npgsql;
 
 namespace Jobs.Core.Repositories;
 
-public class DapperAdditionalDbOperations
+public class PostgresDapperAdditionalDbOperations
 {
     private readonly NpgsqlConnection _connection;
 
-    public DapperAdditionalDbOperations(string connectionString)
+    public PostgresDapperAdditionalDbOperations(string connectionString)
     {
         _connection = new NpgsqlConnection(connectionString);
         _connection.Open();

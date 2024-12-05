@@ -55,7 +55,8 @@ public class ArangoDbApiKeyStorageServiceProvider(IApiKeyStoreRepositoryExtended
                 ToList().
                 ForEach(x=>
                 {
-                    Task.Run(async () => await repository.RemoveAsync(x.Key));
+                    repository.Remove(x.Key);
+                    //Task.Run(async () => await repository.RemoveAsync(x.Key));
                     count++;
                 });
             

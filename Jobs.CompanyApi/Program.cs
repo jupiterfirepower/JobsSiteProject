@@ -20,6 +20,7 @@ using Jobs.CompanyApi.Services.Contracts;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.Extentions;
+using Jobs.Core.Handlers;
 using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
@@ -164,6 +165,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 CorsSettings corsSettings = new();
 
 builder.Configuration
@@ -199,7 +203,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseResponseCompression();
 app.UseForwardedHeaders();
-app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["AdminSafeList"]);
+app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["HostsSafeList"]);
+
+// Global Exception Handler.
+app.UseExceptionHandler();
 
 //app.UseHttpsRedirection();
 

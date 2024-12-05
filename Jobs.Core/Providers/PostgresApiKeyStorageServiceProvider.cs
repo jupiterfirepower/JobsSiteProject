@@ -5,7 +5,7 @@ using Jobs.Core.DataModel;
 
 namespace Jobs.Core.Providers;
 
-public class PostgresApiKeyStorageServiceProvider(IApiKeyStoreRepository repository) : IApiKeyStorageServiceProvider
+public class PostgresApiKeyStorageServiceProvider(IApiKeyStoreRepositoryExtended repository) : IApiKeyStorageServiceProvider
 {
     public bool IsKeyValid(string key)
     {
@@ -42,8 +42,21 @@ public class PostgresApiKeyStorageServiceProvider(IApiKeyStoreRepository reposit
         return true;
     }
 
-    public Task<int> DeleteExpiredKeysAsync()
+    public async Task<int> DeleteExpiredKeysAsync()
     {
-        throw new NotImplementedException();
+        return await Task.Run(async () => { 
+            int count = 0;
+            var data = await repository.GetAllAsync().ConfigureAwait(false);
+            
+            data.Where(x=> x.Expiration.HasValue && x.Expiration.Value < DateTime.UtcNow).
+                ToList().
+                ForEach(x=>
+                {
+                    repository.Remove(x.Key);
+                    count++;
+                });
+            
+            return count;
+        });
     }
 }

@@ -32,9 +32,9 @@ public class UnqliteApiKeyStorageServiceProvider(IApiKeyStoreRepositoryExtended 
     {
         return await Task.Run(async () => { 
             int count = 0;
+            var data = await repository.GetAllAsync().ConfigureAwait(false);
         
-            (await repository.GetAllAsync()).
-                Where(x=> x.Expiration.HasValue && x.Expiration.Value < DateTime.UtcNow).
+            data.Where(x=> x.Expiration.HasValue && x.Expiration.Value < DateTime.UtcNow).
                 ToList().
                 ForEach(x=>
                 {

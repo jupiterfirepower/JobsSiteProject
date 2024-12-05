@@ -5,12 +5,12 @@ namespace JobsWebApiNUnitTests;
 
 public class DapperApiKeyRepositoryUnitTests
 {
-    private DapperApiKeyRepository _repository;
+    private PostgresDapperApiKeyRepository _repository;
     
     [SetUp]
     public void Setup()
     {
-        _repository = new DapperApiKeyRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10");
+        _repository = new PostgresDapperApiKeyRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10");
     }
     
     [TearDown]

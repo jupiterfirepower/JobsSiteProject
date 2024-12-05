@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleAESKeyGenApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65776976f07c71e11058aea130ee82bd4824fec9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+217d1d022c465508c75640a3447a21f2f97381b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleAESKeyGenApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleAESKeyGenApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

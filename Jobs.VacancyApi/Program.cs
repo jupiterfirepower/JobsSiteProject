@@ -10,6 +10,7 @@ using Jobs.Common.Options;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.Extentions;
+using Jobs.Core.Handlers;
 using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
@@ -133,6 +134,9 @@ try
 
     builder.Services.AddResponseCompressionService();
     
+    builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+    builder.Services.AddProblemDetails();
+    
     builder.Services.AddCors(options =>
     {
         options.AddDefaultPolicy(build => {
@@ -147,8 +151,12 @@ try
     
     app.UseResponseCompression();
     app.UseForwardedHeaders();
-    app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["AdminSafeList"]);
+    app.UseMiddleware<AdminSafeListMiddleware>(builder.Configuration["HostsSafeList"]);
     
+    // Global Exception Handler.
+    app.UseExceptionHandler();
+    
+   
 // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {

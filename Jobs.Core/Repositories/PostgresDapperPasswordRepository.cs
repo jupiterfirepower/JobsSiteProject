@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace Jobs.Core.Repositories;
 
-public class DapperPasswordRepository(string connectionString) : IPwdStoreRepository, IDisposable
+public class PostgresDapperPasswordRepository(string connectionString) : IPwdStoreRepository, IDisposable
 {
         private readonly NpgsqlConnection _connection = new (connectionString); // ;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=20;"
         

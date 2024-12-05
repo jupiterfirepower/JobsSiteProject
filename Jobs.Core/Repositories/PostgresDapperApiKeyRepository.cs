@@ -6,17 +6,16 @@ using Npgsql;
 
 namespace Jobs.Core.Repositories;
 
-public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepository, IDisposable
+public class PostgresDapperApiKeyRepository(string connectionString) : IApiKeyStoreRepositoryExtended, IDisposable
 {
     private readonly NpgsqlConnection _connection = new (connectionString); // ;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=20;"
     private const string AddCommandText = "call sp_add_apikeys(@key,@expired);";
     private const string SelectCommandText = "select key as \"Key\", expired as \"Expiration\" from fn_get_apikey(@key);";
     private const string DeleteCommandText = "call sp_del_apikey(@key);";
+    private const string SelectApiKeysCommandText = "select key as \"Key\", expired as \"Expiration\" from apikeystore;";
     
     public void Add(ApiKey item)
     {
-        //using var connection = new NpgsqlConnection(connectionString);
-        
         try
         {
             _connection.Open();
@@ -37,8 +36,6 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
 
     public async Task AddAsync(ApiKey item)
     {
-        //await using var connection = new NpgsqlConnection(connectionString);
-        
         try
         {
             await _connection.OpenAsync();
@@ -59,8 +56,6 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
 
     public ApiKey Get(string key)
     {
-        // using var connection = new NpgsqlConnection(connectionString);
-        
         try
         {
             _connection.Open();
@@ -75,8 +70,6 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
 
     public async Task<ApiKey> GetAsync(string key)
     {
-        // await using var connection = new NpgsqlConnection(connectionString);
-        
         try
         {
             await _connection.OpenAsync();
@@ -91,8 +84,6 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
 
     public void Remove(string key)
     {
-        //using var connection = new NpgsqlConnection(connectionString);
-        
         try
         {
             _connection.Open();
@@ -109,7 +100,6 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
     
     public async Task RemoveAsync(string key)
     {
-        // await using var connection = new NpgsqlConnection(connectionString);
         try
         {
             await _connection.OpenAsync();
@@ -124,7 +114,22 @@ public class DapperApiKeyRepository(string connectionString) : IApiKeyStoreRepos
         }
     }
     
-    private bool _disposed = false;
+    public async Task<List<ApiKey>> GetAllAsync()
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            var data = await _connection.QueryAsync<ApiKey>(SelectApiKeysCommandText);
+            
+            return data.ToList();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+    
+    private bool _disposed;
 
     private void Dispose(bool disposing)
     {

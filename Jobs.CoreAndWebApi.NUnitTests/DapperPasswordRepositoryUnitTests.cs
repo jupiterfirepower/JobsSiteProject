@@ -5,13 +5,13 @@ namespace JobsWebApiNUnitTests;
 
 public class DapperPasswordRepositoryUnitTests
 {
-    private DapperPasswordRepository _repository;
+    private PostgresDapperPasswordRepository _repository;
     
     [SetUp]
     public void Setup()
     {
         // Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=100
-        _repository = new DapperPasswordRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10;");
+        _repository = new PostgresDapperPasswordRepository("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=10;");
     }
     
     [TearDown]

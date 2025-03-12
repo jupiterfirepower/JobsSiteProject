@@ -5587,7 +5587,6 @@
       "packagesPath": "/home/jupiter/.nuget/packages/",
       "outputPath": "/home/jupiter/RiderProjects/JobProject/Jobs.Common/obj/",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/home/jupiter/.nuget/NuGet/NuGet.Config"
       ],

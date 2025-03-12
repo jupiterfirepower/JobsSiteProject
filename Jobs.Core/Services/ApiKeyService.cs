@@ -34,7 +34,7 @@ public class ApiKeyService(IApiKeyManagerServiceProvider managerServiceProvider,
     {
         var diff = DateTime.UtcNow.Ticks - nonce;
         
-        if(diff/TimeSpan.TicksPerSecond <= 5) // less than 5 seconds.
+        if(diff > 0 && diff/TimeSpan.TicksPerSecond <= 5) // less than 5 seconds.
             return true;
         
         return false;

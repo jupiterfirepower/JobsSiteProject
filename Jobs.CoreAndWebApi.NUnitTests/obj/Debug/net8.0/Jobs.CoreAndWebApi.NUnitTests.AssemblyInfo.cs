@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jobs.CoreAndWebApi.NUnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+217d1d022c465508c75640a3447a21f2f97381b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f44bacb5ef04ee7010e9e192afdb5d766d2ae95")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jobs.CoreAndWebApi.NUnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jobs.CoreAndWebApi.NUnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

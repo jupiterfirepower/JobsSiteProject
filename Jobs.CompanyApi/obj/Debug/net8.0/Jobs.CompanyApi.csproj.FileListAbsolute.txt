@@ -234,3 +234,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/ref/Jobs.CompanyApi.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/obj/Debug/net8.0/Jobs.CompanyApi.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/bin/Debug/net8.0/UnQLiteNet.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.CompanyApi/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll

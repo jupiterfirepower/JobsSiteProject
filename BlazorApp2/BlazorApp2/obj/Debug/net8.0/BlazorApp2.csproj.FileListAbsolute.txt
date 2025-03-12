@@ -175,3 +175,4 @@
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/obj/Debug/net8.0/BlazorApp2.MvcApplicationPartsAssemblyInfo.cs
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/obj/Debug/net8.0/BlazorApp2.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/bin/Debug/net8.0/UnQLiteNet.dll
+/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll

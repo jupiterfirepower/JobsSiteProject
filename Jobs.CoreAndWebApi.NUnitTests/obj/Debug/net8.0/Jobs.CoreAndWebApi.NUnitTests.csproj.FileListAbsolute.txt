@@ -543,3 +543,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/obj/Debug/net8.0/ref/Jobs.CoreAndWebApi.NUnitTests.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/obj/Debug/net8.0/Jobs.CoreAndWebApi.NUnitTests.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/bin/Debug/net8.0/UnQLiteNet.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll

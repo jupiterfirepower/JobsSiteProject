@@ -13,7 +13,6 @@
         "packagesPath": "/home/jupiter/.nuget/packages/",
         "outputPath": "/home/jupiter/RiderProjects/JobProject/Jobs.Core/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/home/jupiter/.nuget/NuGet/NuGet.Config"
         ],
@@ -59,6 +58,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
+            },
+            "FirebirdSql.Data.FirebirdClient": {
+              "target": "Package",
+              "version": "[10.3.2, )"
             },
             "Konscious.Security.Cryptography.Argon2": {
               "target": "Package",

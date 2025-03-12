@@ -228,3 +228,4 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/ref/Jobs.VacancyApi.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/Jobs.VacancyApi.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/UnQLiteNet.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll

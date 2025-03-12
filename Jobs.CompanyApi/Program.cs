@@ -29,6 +29,7 @@ using Jobs.Core.Services;
 using Jobs.Entities.Models;
 using Keycloak.AuthServices.Authentication;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -321,7 +322,7 @@ bool IsBadRequest(IHttpContextAccessor httpContextAccessor,
     return false;
 }
 
-app.MapGet("api/v{version:apiVersion}/companies", async (HttpContext context, 
+app.MapGet("api/v{version:apiVersion}/companies", async Task<Results<Ok<List<CompanyDto>>, BadRequest>> (HttpContext context, 
         ClaimsPrincipal user,
         [FromServices] ISender mediatr, 
         [FromServices] IApiKeyService service,
@@ -342,21 +343,21 @@ app.MapGet("api/v{version:apiVersion}/companies", async (HttpContext context,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         var ipAddress = context.Request.GetIpAddress();
         Log.Information($"ClientIPAddress - {ipAddress}.");
         
         var companies = await mediatr.Send(new ListCompaniesQuery());
-        return Results.Ok(companies);
+        return TypedResults.Ok(companies);
     }).WithName("GetCompanies")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .RequireAuthorization()
     .WithOpenApi();
 
-app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async (int id,
+app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ok<CompanyDto>, BadRequest, NotFound>> (int id,
         ISender mediatr,
         [FromServices] IApiKeyService service, 
         [FromServices] ISignedNonceService signedNonceService,
@@ -373,22 +374,22 @@ app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async (int id,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         if (id <= 0)
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
-        var vacancy = await mediatr.Send(new GetCompanyQuery(id));
-        return vacancy == null ? Results.NotFound() : Results.Ok(vacancy);
+        var company = await mediatr.Send(new GetCompanyQuery(id));
+        return company == null ? TypedResults.NotFound() : TypedResults.Ok(company);
     }).WithName("GetCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
 
-app.MapPost("api/v{version:apiVersion}/companies", async ([FromBody] CompanyInDto company,
+app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<CompanyDto>, BadRequest>> ([FromBody] CompanyInDto company,
         [FromServices] IApiKeyService service, 
         [FromServices] ISignedNonceService signedNonceService,
         [FromServices] IEncryptionService cryptService,
@@ -406,33 +407,33 @@ app.MapPost("api/v{version:apiVersion}/companies", async ([FromBody] CompanyInDt
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             if (company.CompanyId != 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
                 
             if (!company.IsValid())
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
 
             var result = await mediatr.Send(new CreateCompanyCommand(sanitized));
-            if (0 == result.CompanyId) return Results.BadRequest();
+            if (0 == result.CompanyId) return TypedResults.BadRequest();
                 
             await publisher.Publish(new CompanyCreatedNotification(result.CompanyId));
             
-            return Results.Created($"/companies/{result.CompanyId}", result);
+            return TypedResults.Created($"/companies/{result.CompanyId}", result);
     }).WithName("AddCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
 
-app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async (int id, 
+app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<BadRequest, NoContent, NotFound>> (int id, 
         CompanyInDto company, 
         [FromServices] ISender mediatr,
         [FromServices] IApiKeyService service, 
@@ -450,29 +451,29 @@ app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async (int id,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         if (id != company.CompanyId || id <= 0)
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         if (!company.IsValid())
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
             
         var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
         var result = await mediatr.Send(new UpdateCompanyCommand(sanitized));
 
-        return result > 0 ? Results.NoContent() : Results.NotFound();
+        return result > 0 ? TypedResults.NoContent() : TypedResults.NotFound();
     }).WithName("ChangeCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
 
-app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async (int id, 
+app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<BadRequest, NoContent, NotFound>> (int id, 
         ISender mediatr,
         [FromServices] IApiKeyService service, 
         [FromServices] ISignedNonceService signedNonceService,
@@ -489,16 +490,16 @@ app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async (int id,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         if (id <= 0)
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
         
         var result = await mediatr.Send(new DeleteCompanyCommand(id));
-        return result == -1 ? Results.NotFound() : Results.NoContent();
+        return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
     }).WithName("RemoveCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")

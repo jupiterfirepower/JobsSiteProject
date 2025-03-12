@@ -123,3 +123,4 @@
 /home/jupiter/RiderProjects/JobProject/ConsoleAESKeyGenApp/bin/Debug/net8.0/Serilog.Sinks.OpenTelemetry.dll
 /home/jupiter/RiderProjects/JobProject/ConsoleAESKeyGenApp/obj/Debug/net8.0/ConsoleAESKeyGenApp.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/ConsoleAESKeyGenApp/bin/Debug/net8.0/UnQLiteNet.dll
+/home/jupiter/RiderProjects/JobProject/ConsoleAESKeyGenApp/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll

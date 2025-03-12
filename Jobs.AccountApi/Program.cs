@@ -11,6 +11,7 @@ using AutoMapper;
 using Jobs.Common.Constants;
 using Jobs.Common.Extentions;
 using Jobs.Common.Options;
+using Jobs.Common.Responses;
 using Jobs.Common.Settings;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
@@ -23,7 +24,9 @@ using Jobs.Core.Observability.Options;
 using Jobs.Core.Providers;
 using Jobs.Core.Services;
 using Jobs.Entities.DataModel;
+using Jobs.Entities.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using StackExchange.Redis;
@@ -310,7 +313,7 @@ app.Use(async (context, next) =>
     await next.Invoke();
 });
 
-app.MapPost("api/v{version:apiVersion}/login", async ([FromBody] LoginUser user,
+app.MapPost("api/v{version:apiVersion}/login", async Task<Results<Ok<KeycloakTokenResponse>, BadRequest, NotFound>> ([FromBody] LoginUser user,
         HttpContext context,
         [FromServices] IKeycloakAccountService accountService,
         [FromServices] ISender mediatr,
@@ -333,7 +336,7 @@ app.MapPost("api/v{version:apiVersion}/login", async ([FromBody] LoginUser user,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
 
         var ipAddress = context.Request.GetIpAddress();
@@ -342,12 +345,12 @@ app.MapPost("api/v{version:apiVersion}/login", async ([FromBody] LoginUser user,
         try
         {
             var result = await accountService.LoginAsync(user.UserName, user.Password).ConfigureAwait(false);
-            return Results.Ok(result);
+            return TypedResults.Ok(result);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            return Results.NotFound();
+            return TypedResults.NotFound();
         }
     }).WithName("Login")
     .WithOpenApi()
@@ -355,7 +358,7 @@ app.MapPost("api/v{version:apiVersion}/login", async ([FromBody] LoginUser user,
     .AllowAnonymous()
     .RequireRateLimiting("FixedWindow");
 
-app.MapPost("api/v{version:apiVersion}/logout", async ([FromBody] LogoutUser user,
+app.MapPost("api/v{version:apiVersion}/logout", async Task<Results<Ok, BadRequest>> ([FromBody] LogoutUser user,
         HttpContext context,
         [FromServices] IHttpClientFactory httpClientFactory,
         [FromServices] IApiKeyService service, 
@@ -379,7 +382,7 @@ app.MapPost("api/v{version:apiVersion}/logout", async ([FromBody] LogoutUser use
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
         
         var ipAddress = context.Request.GetIpAddress();
@@ -388,13 +391,13 @@ app.MapPost("api/v{version:apiVersion}/logout", async ([FromBody] LogoutUser use
         //POST /admin/realms/{realm}/users/{user-id}/logout
         var result = await accountService.LogoutAsync(user).ConfigureAwait(false);
         
-        return result ? Results.Ok() : Results.BadRequest();
+        return result ? TypedResults.Ok() : TypedResults.BadRequest();
     }).WithName("Logout")
     .WithOpenApi()
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow");
 
-app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
+app.MapPost("api/v{version:apiVersion}/register", async Task<Results<Ok<RegisterUserResponse>, BadRequest>> ([FromBody] User user,
         HttpContext context,
         [FromServices] IApiKeyService service,
         [FromServices] IKeycloakAccountService accountService,
@@ -417,7 +420,7 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
         {
-            return Results.BadRequest();
+            return TypedResults.BadRequest();
         }
         
         var ipAddress = context.Request.GetIpAddress();
@@ -425,14 +428,14 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
         
         var result = await accountService.RegisterUser(user).ConfigureAwait(false);
 
-        return Results.Ok(result);
+        return TypedResults.Ok(result);
     }).WithName("Register")
     .WithOpenApi()
     .MapApiVersion(apiVersionSet, version1)
     .AllowAnonymous()
     .RequireRateLimiting("FixedWindow");
 
-    app.MapPost("api/v{version:apiVersion}/refresh", async ([FromBody] string refreshToken,
+    app.MapPost("api/v{version:apiVersion}/refresh", async Task<Results<Ok<KeycloakRespone>, BadRequest>> ([FromBody] string refreshToken,
             HttpContext context,
             [FromServices] IApiKeyService service,
             [FromServices] IKeycloakAccountService accountService,
@@ -456,7 +459,7 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
                     cryptService, signedNonceService, service,
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             var ipAddress = context.Request.GetIpAddress();
@@ -464,7 +467,7 @@ app.MapPost("api/v{version:apiVersion}/register", async ([FromBody] User user,
 
             var result = await accountService.RefreshTokenAsync(refreshToken).ConfigureAwait(false);
 
-            return Results.Ok(result);
+            return TypedResults.Ok(result);
         }).WithName("Refresh")
         .WithOpenApi()
         .MapApiVersion(apiVersionSet, version1)

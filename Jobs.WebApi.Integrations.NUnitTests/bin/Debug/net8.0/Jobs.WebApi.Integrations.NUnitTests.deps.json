@@ -448,6 +448,17 @@
           "lib/net7.0/Dapper.dll": {}
         }
       },
+      "FirebirdSql.Data.FirebirdClient/10.3.2": {
+        "runtime": {
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        },
+        "compile": {
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
       "FluentAssertions/6.12.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
@@ -3053,6 +3064,7 @@
           "Asp.Versioning.Http": "8.1.0",
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Dapper": "2.1.35",
+          "FirebirdSql.Data.FirebirdClient": "10.3.2",
           "Konscious.Security.Cryptography.Argon2": "1.3.1",
           "Microsoft.AspNetCore.Components": "8.0.11",
           "Microsoft.AspNetCore.Http": "2.2.2",
@@ -5004,6 +5016,13 @@
       "sha512": "sha512-YKRwjVfrG7GYOovlGyQoMvr1/IJdn+7QzNXJxyMh0YfFF5yvDmTYaJOVYWsckreNjGsGSEtrMTpnzxTUq/tZQw==",
       "path": "dapper/2.1.35",
       "hashPath": "dapper.2.1.35.nupkg.sha512"
+    },
+    "FirebirdSql.Data.FirebirdClient/10.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mo74lexrjTPAQ4XGrVWTdXy1wEnLKl/KcUeHO8HqEcULrqo5HfZmhgbClqIPogeQ6TY6Jh1EClfHa9ALn5IxfQ==",
+      "path": "firebirdsql.data.firebirdclient/10.3.2",
+      "hashPath": "firebirdsql.data.firebirdclient.10.3.2.nupkg.sha512"
     },
     "FluentAssertions/6.12.0": {
       "type": "package",

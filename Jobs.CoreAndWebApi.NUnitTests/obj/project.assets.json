@@ -120,6 +120,15 @@
           }
         }
       },
+      "FirebirdSql.Data.FirebirdClient/10.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
       "FluentValidation/11.10.0": {
         "type": "package",
         "compile": {
@@ -4396,6 +4405,7 @@
           "Asp.Versioning.Http": "8.1.0",
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Dapper": "2.1.35",
+          "FirebirdSql.Data.FirebirdClient": "10.3.2",
           "Konscious.Security.Cryptography.Argon2": "1.3.1",
           "Microsoft.AspNetCore.Components": "8.0.11",
           "Microsoft.AspNetCore.Http": "2.2.2",
@@ -4654,6 +4664,27 @@
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml",
         "readme.md"
+      ]
+    },
+    "FirebirdSql.Data.FirebirdClient/10.3.2": {
+      "sha512": "mo74lexrjTPAQ4XGrVWTdXy1wEnLKl/KcUeHO8HqEcULrqo5HfZmhgbClqIPogeQ6TY6Jh1EClfHa9ALn5IxfQ==",
+      "type": "package",
+      "path": "firebirdsql.data.firebirdclient/10.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "firebird-logo.png",
+        "firebirdsql.data.firebirdclient.10.3.2.nupkg.sha512",
+        "firebirdsql.data.firebirdclient.nuspec",
+        "lib/net48/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net6.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net7.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/netstandard2.1/FirebirdSql.Data.FirebirdClient.dll",
+        "license.txt"
       ]
     },
     "FluentValidation/11.10.0": {
@@ -11242,6 +11273,7 @@
     "net8.0": [
       "AutoMapper >= 13.0.1",
       "Dapper >= 2.1.35",
+      "FirebirdSql.Data.FirebirdClient >= 10.3.2",
       "FluentValidation >= 11.10.0",
       "Jobs.VacancyApi >= 1.0.0",
       "MediatR >= 12.4.0",
@@ -11267,7 +11299,6 @@
       "packagesPath": "/home/jupiter/.nuget/packages/",
       "outputPath": "/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/obj/",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/home/jupiter/.nuget/NuGet/NuGet.Config"
       ],
@@ -11309,6 +11340,10 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.1.35, )"
+          },
+          "FirebirdSql.Data.FirebirdClient": {
+            "target": "Package",
+            "version": "[10.3.2, )"
           },
           "FluentValidation": {
             "target": "Package",

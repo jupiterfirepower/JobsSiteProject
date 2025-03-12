@@ -25,7 +25,7 @@ begin
        DELETE FROM "VacancyEmploymentTypes" WHERE "VacancyId" = vacancyId;
 
        WITH t AS (
-  	  SELECT DISTINCT unnest (string_to_array(empTypes, ',')::integer[]) as emptypeid
+  	   SELECT DISTINCT unnest (string_to_array(empTypes, ',')::integer[]) as emptypeid
        ), r AS (
           SELECT t.emptypeid FROM t INNER JOIN "EmploymentTypes" e
           ON "e"."EmploymentTypeId" = t.emptypeid

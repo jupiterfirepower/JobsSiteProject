@@ -27,9 +27,11 @@ using Jobs.VacancyApi.Middleware;
 using Jobs.VacancyApi.Repository;
 using Jobs.VacancyApi.Services;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using OpenTelemetry.Resources;
 using Serilog;
 
@@ -59,6 +61,8 @@ try
     builder.Services.AddDbContext<JobsDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
+    var vacancySecretKey = builder.Configuration["VacancyApiService:SecretKey"];
+    
     CryptOptions cryptOptions = new();
 
     builder.Configuration
@@ -81,6 +85,8 @@ try
     builder.Services.AddScoped<IEncryptionService, NaiveEncryptionService>(p => 
         p.ResolveWith<NaiveEncryptionService>(Convert.FromBase64String(cryptOptions.PKey), Convert.FromBase64String(cryptOptions.IV)));
     builder.Services.AddScoped<ISignedNonceService, SignedNonceService>();
+    builder.Services.AddScoped<ISecretApiService, SecretApiService>(p => 
+        p.ResolveWith<SecretApiService>(vacancySecretKey));
     
 
 //builder.Services.AddAutoMapper(Assembly.GetEntryAssembly()); // AutoMapper registration
@@ -296,7 +302,7 @@ try
         return false;
     }
     
-    app.MapGet("api/v{version:apiVersion}/categories", async (HttpContext context, 
+    app.MapGet("api/v{version:apiVersion}/categories", async Task<Results<Ok<List<CategoryDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -313,20 +319,20 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var items = await mediatr.Send(new ListCategoriesQuery());
-            return Results.Ok(items);
+            return TypedResults.Ok(items);
         }).WithName("GetCategories")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
     
-    app.MapGet("api/v{version:apiVersion}/employmenttypes", async (HttpContext context, 
+    app.MapGet("api/v{version:apiVersion}/employmenttypes", async Task<Results<Ok<List<EmploymentTypeDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -343,20 +349,20 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var items = await mediatr.Send(new ListEmploymentTypesQuery());
-            return Results.Ok(items);
+            return TypedResults.Ok(items);
         }).WithName("GetEmploymentTypes")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
     
-    app.MapGet("api/v{version:apiVersion}/employmenttypes/{id:int}", async (int id, 
+    app.MapGet("api/v{version:apiVersion}/employmenttypes/{id:int}", async Task<Results<Ok<EmploymentTypeDto>, BadRequest, NotFound>> (int id, 
             HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
@@ -374,25 +380,25 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             if (id <= 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var result = await mediatr.Send(new GetEmploymentTypeQuery(id));
-            return result != null ? Results.Ok(result) : Results.NotFound();
+            return result != null ? TypedResults.Ok(result) : TypedResults.NotFound();
         }).WithName("GetEmploymentType")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
     
-    app.MapGet("api/v{version:apiVersion}/worktypes", async (HttpContext context, 
+    app.MapGet("api/v{version:apiVersion}/worktypes", async Task<Results<Ok<List<WorkTypeDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -409,20 +415,20 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var items = await mediatr.Send(new ListWorkTypesQuery());
-            return Results.Ok(items);
+            return TypedResults.Ok(items);
         }).WithName("GetWorkTypes")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
     
-    app.MapGet("api/v{version:apiVersion}/worktypes/{id:int}", async (int id, 
+    app.MapGet("api/v{version:apiVersion}/worktypes/{id:int}", async Task<Results<Ok<WorkTypeDto>, BadRequest, NotFound>> (int id, 
             HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
@@ -440,26 +446,26 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             if (id <= 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var result = await mediatr.Send(new GetWorkTypeQuery(id));
-            return result != null ? Results.Ok(result) : Results.NotFound();
+            return result != null ? TypedResults.Ok(result) : TypedResults.NotFound();
         }).WithName("GetWorkType")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
 
 //api/v{version:apiVersion}
-    app.MapGet("api/v{version:apiVersion}/vacancies", async (HttpContext context, 
+    app.MapGet("api/v{version:apiVersion}/vacancies", async Task<Results<Ok<List<VacancyDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -476,20 +482,20 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var products = await mediatr.Send(new ListVacanciesQuery());
-            return Results.Ok(products);
+            return TypedResults.Ok(products);
         }).WithName("GetVacancies")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
 
-    app.MapGet("api/v{version:apiVersion}/vacancies/{id:int}", async (int id, 
+    app.MapGet("api/v{version:apiVersion}/vacancies/{id:int}", async Task<Results<Ok<VacancyDto>, BadRequest, NotFound>> (int id, 
             [FromServices] ISender mediatr,
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -506,16 +512,16 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             if (id <= 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             var vacancy = await mediatr.Send(new GetVacancyQuery(id));
-            return vacancy == null ? Results.NotFound() : Results.Ok(vacancy);
+            return vacancy == null ? TypedResults.NotFound() : TypedResults.Ok(vacancy);
         }).WithName("GetVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
@@ -526,7 +532,7 @@ try
         VacancyDescription = HtmlSanitizerHelper.Sanitize(entity.VacancyDescription) 
     };
     
-    app.MapPost("api/v{version:apiVersion}/vacancies", async (VacancyInDto vacancy,
+    app.MapPost("api/v{version:apiVersion}/vacancies", async Task<Results<Created<VacancyDto>, BadRequest>> (VacancyInDto vacancy,
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
             [FromServices] ISender mediatr, 
@@ -544,34 +550,34 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             if (vacancy.VacancyId != 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             if (!vacancy.IsValid())
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             var sanitized = SanitizeVacancyInDto(vacancy);
 
             var result = await mediatr.Send(new CreateVacancyCommand(sanitized));
 
-            if (0 == result.VacancyId) return Results.BadRequest();
+            if (0 == result.VacancyId) return TypedResults.BadRequest();
             
             await publisher.Publish(new VacancyCreatedNotification(result.VacancyId));
 
-            return Results.Created($"/vacancies/{result.VacancyId}", result);
+            return TypedResults.Created($"/vacancies/{result.VacancyId}", result);
         }).WithName("AddVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
     
-    app.MapPut("api/v{version:apiVersion}/vacancies/{id:int}", async (int id, 
+    app.MapPut("api/v{version:apiVersion}/vacancies/{id:int}", async Task<Results<BadRequest, NotFound, NoContent>>(int id, 
             [FromBody] VacancyInDto vacancy, 
             [FromServices] ISender mediatr,
             [FromServices] IApiKeyService service, 
@@ -589,30 +595,30 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             if (id != vacancy.VacancyId || id <= 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             if (!vacancy.IsValid())
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
             
             var sanitized = SanitizeVacancyInDto(vacancy);
 
             var result = await mediatr.Send(new UpdateVacancyCommand(sanitized));
 
-            return result > 0 ? Results.NoContent() : Results.NotFound();
+            return result > 0 ? TypedResults.NoContent() : TypedResults.NotFound();
         }).WithName("ChangeVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
 
-    app.MapDelete("api/v{version:apiVersion}/vacancies/{id:int}", async (int id, 
+    app.MapDelete("api/v{version:apiVersion}/vacancies/{id:int}",  async Task<Results<BadRequest, NotFound, NoContent>> (int id, 
             [FromServices] ISender mediatr,
             [FromServices] IApiKeyService service, 
             [FromServices] IEncryptionService cryptService,
@@ -629,16 +635,16 @@ try
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             if (id <= 0)
             {
-                return Results.BadRequest();
+                return TypedResults.BadRequest();
             }
 
             var result = await mediatr.Send(new DeleteVacancyCommand(id));
-            return result == -1 ? Results.NotFound() : Results.NoContent();
+            return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
         }).WithName("RemoveVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")

@@ -12,6 +12,11 @@
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.PostgresApiKeyStorageServiceProviderUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2e6eea3b_002D40c4_002D4f7b_002Da0fc_002D4e2d2b87854a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateDbTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.FirebirdDbUnitTests.CreateDbTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=44a3e1ad_002D1dab_002D4a4b_002D95df_002D35386992c687/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ProcessingServiceCreateVacancyTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/home/jupiter/RiderProjects/JobProject/JobsWebApiNUnitTests" Presentation="&amp;lt;JobsWebApiNUnitTests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
@@ -24,7 +29,7 @@
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.NaiveEncryptionServiceUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=997806b8_002D77f7_002D4066_002Db2c5_002D1301c8abf0d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="JobsWebApiIntegrationsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=997806b8_002D77f7_002D4066_002Db2c5_002D1301c8abf0d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="JobsWebApiIntegrationsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::9DBD2A98-9791-4A6D-A425-3031E4DE1F59::net8.0::JobsWebApiIntegrationsTests.JobsWebApiIntegrationsTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ProcessingServiceUnitTests&lt;/TestId&gt;
@@ -44,6 +49,7 @@
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests.RepositoryAddVacancyTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.NaiveEncryptionServiceUnitTests.AddRemoveApiKeyTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.FirebirdDbUnitTests.CreateDbTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

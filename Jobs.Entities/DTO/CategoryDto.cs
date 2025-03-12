@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Jobs.Entities.DTO;
 
-public class CategoryDto
+public record CategoryDto
 {
     [JsonPropertyName("categoryId")]
     public int CategoryId { get; set; }

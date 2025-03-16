@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jobs.VacancyApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c705404e1a92203ae3c7249c1df1d042d45fe99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+296c56ca5265282aa8515d24cb917c26f0668bfa")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jobs.VacancyApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jobs.VacancyApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

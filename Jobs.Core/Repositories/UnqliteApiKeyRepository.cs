@@ -7,13 +7,12 @@ namespace Jobs.Core.Repositories;
 
 public class UnqliteApiKeyRepository: IApiKeyStoreRepositoryExtended, IDisposable
 {
-    private readonly UnQLite _db = new UnQLite(":mem:", UnQLiteOpenModel.Create | UnQLiteOpenModel.ReadWrite);
+    private readonly UnQLite _db = new (":mem:", UnQLiteOpenModel.Create | UnQLiteOpenModel.ReadWrite);
     
     public void Add(ApiKey item)
     {
         string jsonString = JsonSerializer.Serialize(item);
         _db.Save(item.Key, jsonString);  
-        //_db.Append();
     }
 
     public async Task AddAsync(ApiKey item) => await Task.Run(() => Add(item));

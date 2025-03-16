@@ -302,6 +302,30 @@ try
         return false;
     }
     
+    // Create a reusable logger
+    var loggerFactory = builder.Services.BuildServiceProvider()
+        .GetRequiredService<ILoggerFactory>();
+    var groupLogger = loggerFactory
+        .CreateLogger("dict-endpoints\"");
+    
+    // Create the group
+    var group = app
+        .MapGroup("dict-endpoints")
+        .WithTags("Db Dictionary Endpoints")
+        .AddEndpointFilter(async (context, next) =>
+        {
+            groupLogger.LogTrace("Entering dict-endpoints");
+            // Omitted argument logging
+            var result = await next(context);
+            groupLogger.LogTrace("Exiting dict-endpoints");
+            return result;
+        });
+    
+    group.MapGet("demo/", ()
+        => "GET endpoint from the organizing-endpoints group.");
+    group.MapGet("demo/{id}", (int id)
+        => $"GET {id} endpoint from the organizing-endpoints group.");
+    
     app.MapGet("api/v{version:apiVersion}/categories", async Task<Results<Ok<List<CategoryDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
             [FromServices] IApiKeyService service, 

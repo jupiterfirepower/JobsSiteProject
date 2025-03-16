@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7vN2OK8Azfo=",
+  "dgSpecHash": "vsjNaK5xBTs=",
   "success": true,
   "projectFilePath": "/home/jupiter/RiderProjects/JobProject/Jobs.Core/Jobs.Core.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "/home/jupiter/.nuget/packages/asp.versioning.mvc/8.1.0/asp.versioning.mvc.8.1.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/asp.versioning.mvc.apiexplorer/8.1.0/asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.bindings.full/1.2.1/duckdb.net.bindings.full.1.2.1.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.data.full/1.2.1/duckdb.net.data.full.1.2.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/firebirdsql.data.firebirdclient/10.3.2/firebirdsql.data.firebirdclient.10.3.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/grpc.core.api/2.62.0/grpc.core.api.2.62.0.nupkg.sha512",

@@ -229,3 +229,10 @@
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/obj/Debug/net8.0/Jobs.VacancyApi.sourcelink.json
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/UnQLiteNet.dll
 /home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/FirebirdSql.Data.FirebirdClient.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/DuckDB.NET.Bindings.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/DuckDB.NET.Data.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/runtimes/linux-arm64/native/libduckdb.so
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/runtimes/linux-x64/native/libduckdb.so
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/runtimes/osx/native/libduckdb.dylib
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/runtimes/win-arm64/native/duckdb.dll
+/home/jupiter/RiderProjects/JobProject/Jobs.VacancyApi/bin/Debug/net8.0/runtimes/win-x64/native/duckdb.dll

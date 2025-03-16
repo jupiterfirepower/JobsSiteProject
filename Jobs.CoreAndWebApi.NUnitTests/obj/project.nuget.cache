@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7bPfrMNKr2s=",
+  "dgSpecHash": "PfW7dPK1F6w=",
   "success": true,
   "projectFilePath": "/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests/Jobs.CoreAndWebApi.NUnitTests.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,8 @@
     "/home/jupiter/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.bindings.full/1.2.1/duckdb.net.bindings.full.1.2.1.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.data.full/1.2.1/duckdb.net.data.full.1.2.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/firebirdsql.data.firebirdclient/10.3.2/firebirdsql.data.firebirdclient.10.3.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",

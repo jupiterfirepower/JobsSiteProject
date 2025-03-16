@@ -70,7 +70,6 @@ public class SqliteApiKeyStorageServiceProvider: IApiKeyStorageServiceProvider
           
         var rowsChanged = commandInsert.ExecuteNonQuery();
         Console.WriteLine($"Rows Changed = {rowsChanged}");
-        commandInsert.ExecuteNonQuery();
     }
 
     public async Task<bool> IsKeyValidAsync(string key)

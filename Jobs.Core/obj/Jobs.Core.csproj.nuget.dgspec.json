@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[2.1.35, )"
             },
+            "DuckDB.NET.Data.Full": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
             "FirebirdSql.Data.FirebirdClient": {
               "target": "Package",
               "version": "[10.3.2, )"

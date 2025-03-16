@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "H/lTUBx0n9g=",
+  "dgSpecHash": "J1uh+QcGWPM=",
   "success": true,
   "projectFilePath": "/home/jupiter/RiderProjects/JobProject/Jobs.WebApi.Integrations.NUnitTests/Jobs.WebApi.Integrations.NUnitTests.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,8 @@
     "/home/jupiter/.nuget/packages/asp.versioning.mvc.apiexplorer/8.1.0/asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.bindings.full/1.2.1/duckdb.net.bindings.full.1.2.1.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/duckdb.net.data.full/1.2.1/duckdb.net.data.full.1.2.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/firebirdsql.data.firebirdclient/10.3.2/firebirdsql.data.firebirdclient.10.3.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/fluentassertions/6.12.0/fluentassertions.6.12.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512",

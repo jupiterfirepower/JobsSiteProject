@@ -98,6 +98,57 @@
           }
         }
       },
+      "DuckDB.NET.Bindings.Full/1.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/DuckDB.NET.Bindings.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/DuckDB.NET.Bindings.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/libduckdb.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libduckdb.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx/native/libduckdb.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/win-arm64/native/duckdb.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/duckdb.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "DuckDB.NET.Data.Full/1.2.1": {
+        "type": "package",
+        "dependencies": {
+          "DuckDB.NET.Bindings.Full": "1.2.1"
+        },
+        "compile": {
+          "lib/net8.0/DuckDB.NET.Data.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/DuckDB.NET.Data.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "FirebirdSql.Data.FirebirdClient/10.3.2": {
         "type": "package",
         "compile": {
@@ -3097,6 +3148,7 @@
           "Asp.Versioning.Http": "8.1.0",
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Dapper": "2.1.35",
+          "DuckDB.NET.Data.Full": "1.2.1",
           "FirebirdSql.Data.FirebirdClient": "10.3.2",
           "Konscious.Security.Cryptography.Argon2": "1.3.1",
           "Microsoft.AspNetCore.Components": "8.0.11",
@@ -3241,6 +3293,53 @@
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml",
         "readme.md"
+      ]
+    },
+    "DuckDB.NET.Bindings.Full/1.2.1": {
+      "sha512": "tdK+r/Omifx+VXYo6uLjocgaPcSEWoL0ZN26D9KbffmLGfeYirMMhyoaAwOiBwGbeYS1jlQSiVjmtFv6Squb7g==",
+      "type": "package",
+      "path": "duckdb.net.bindings.full/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE-DuckDB.txt",
+        "LICENSE.md",
+        "Logo.jpg",
+        "README.md",
+        "duckdb.net.bindings.full.1.2.1.nupkg.sha512",
+        "duckdb.net.bindings.full.nuspec",
+        "lib/net6.0/DuckDB.NET.Bindings.dll",
+        "lib/net6.0/DuckDB.NET.Bindings.pdb",
+        "lib/net8.0/DuckDB.NET.Bindings.dll",
+        "lib/net8.0/DuckDB.NET.Bindings.pdb",
+        "lib/netstandard2.0/DuckDB.NET.Bindings.dll",
+        "lib/netstandard2.0/DuckDB.NET.Bindings.pdb",
+        "runtimes/linux-arm64/native/libduckdb.so",
+        "runtimes/linux-x64/native/libduckdb.so",
+        "runtimes/osx/native/libduckdb.dylib",
+        "runtimes/win-arm64/native/duckdb.dll",
+        "runtimes/win-x64/native/duckdb.dll"
+      ]
+    },
+    "DuckDB.NET.Data.Full/1.2.1": {
+      "sha512": "eUdXsYwpnIu4gKjX/T6vA/73rY+O16YB/4mKj/jsdLnmk9C/lwo+AOgejuZgWell5HB7vQaoX8qjYgMM5XTCyA==",
+      "type": "package",
+      "path": "duckdb.net.data.full/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE-DuckDB.txt",
+        "LICENSE.md",
+        "Logo.jpg",
+        "README.md",
+        "duckdb.net.data.full.1.2.1.nupkg.sha512",
+        "duckdb.net.data.full.nuspec",
+        "lib/net6.0/DuckDB.NET.Data.dll",
+        "lib/net6.0/DuckDB.NET.Data.pdb",
+        "lib/net8.0/DuckDB.NET.Data.dll",
+        "lib/net8.0/DuckDB.NET.Data.pdb",
+        "lib/netstandard2.0/DuckDB.NET.Data.dll",
+        "lib/netstandard2.0/DuckDB.NET.Data.pdb"
       ]
     },
     "FirebirdSql.Data.FirebirdClient/10.3.2": {

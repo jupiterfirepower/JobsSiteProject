@@ -322,6 +322,17 @@ bool IsBadRequest(IHttpContextAccessor httpContextAccessor,
     return false;
 }
 
+void Guards(ISender mediatr, IApiKeyService service,
+    IEncryptionService cryptService, ISignedNonceService signedNonceService,
+    IHttpContextAccessor httpContextAccessor)
+{
+    ArgumentNullException.ThrowIfNull(mediatr, nameof(mediatr));
+    ArgumentNullException.ThrowIfNull(service, nameof(service));
+    ArgumentNullException.ThrowIfNull(cryptService, nameof(cryptService));
+    ArgumentNullException.ThrowIfNull(signedNonceService, nameof(signedNonceService));
+    ArgumentNullException.ThrowIfNull(httpContextAccessor, nameof(httpContextAccessor));
+}
+
 app.MapGet("api/v{version:apiVersion}/companies", async Task<Results<Ok<List<CompanyDto>>, BadRequest>> (HttpContext context, 
         ClaimsPrincipal user,
         [FromServices] ISender mediatr, 
@@ -338,6 +349,8 @@ app.MapGet("api/v{version:apiVersion}/companies", async Task<Results<Ok<List<Com
     {
         app.Logger.LogInformation($"UserName: {user.Identity?.Name}");
         Console.WriteLine($"UserAgent - {httpContextAccessor.HttpContext?.Request.Headers.UserAgent}");
+        
+        Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
         
         if (IsBadRequest(httpContextAccessor, 
                 cryptService, signedNonceService, service, 
@@ -370,6 +383,8 @@ app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ok
         [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
          StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
+        Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
+        
         if (IsBadRequest(httpContextAccessor, 
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
@@ -403,6 +418,8 @@ app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<Co
         [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
          StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
         {
+            Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
+            
             if (IsBadRequest(httpContextAccessor, 
                     cryptService, signedNonceService, service, 
                     apiKey, signedNonce, apiSecret))
@@ -447,6 +464,8 @@ app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ba
         [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
          StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
+        Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
+        
         if (IsBadRequest(httpContextAccessor, 
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))
@@ -486,6 +505,8 @@ app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async Task<Results
         [FromHeader(Name = HttpHeaderKeys.XApiSecretHeaderKey), Required, 
          StringLength(HttpHeaderKeys.XApiSecretHeaderKeyMaxLength, MinimumLength = HttpHeaderKeys.XApiSecretHeaderKeyMinLength)] string apiSecret) =>
     {
+        Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
+        
         if (IsBadRequest(httpContextAccessor, 
                 cryptService, signedNonceService, service, 
                 apiKey, signedNonce, apiSecret))

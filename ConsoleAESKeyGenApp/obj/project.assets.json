@@ -85,6 +85,19 @@
           }
         }
       },
+      "CommunityToolkit.HighPerformance/8.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/CommunityToolkit.HighPerformance.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/CommunityToolkit.HighPerformance.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Dapper/2.1.35": {
         "type": "package",
         "compile": {
@@ -1431,6 +1444,35 @@
           }
         }
       },
+      "protobuf-net/3.1.25": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net.Core": "3.1.25"
+        },
+        "compile": {
+          "lib/net6.0/protobuf-net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/protobuf-net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "protobuf-net.Core/3.1.25": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/protobuf-net.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/protobuf-net.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Refit/6.1.15": {
         "type": "package",
         "dependencies": {
@@ -1464,6 +1506,119 @@
         },
         "runtime": {
           "lib/net5.0/Refit.HttpClientFactory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RocksDB/9.10.0.55496": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/RocksDbSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/RocksDbSharp.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/librocksdb-musl.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-arm64/native/librocksdb.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/librocksdb-jemalloc.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/librocksdb-musl.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/librocksdb.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/librocksdb.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/librocksdb.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/rocksdb.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "RocksDb.Extensions/1.5.0": {
+        "type": "package",
+        "dependencies": {
+          "CommunityToolkit.HighPerformance": "8.2.2",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "6.0.0",
+          "RocksDB": "8.11.3.46984"
+        },
+        "compile": {
+          "lib/netstandard2.1/RocksDb.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/RocksDb.Extensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RocksDb.Extensions.Protobuf/1.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Protobuf": "3.21.9",
+          "RocksDb.Extensions": "1.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/RocksDb.Extensions.Protobuf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/RocksDb.Extensions.Protobuf.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RocksDb.Extensions.ProtoBufNet/1.5.0": {
+        "type": "package",
+        "dependencies": {
+          "RocksDb.Extensions": "1.5.0",
+          "protobuf-net": "3.1.25"
+        },
+        "compile": {
+          "lib/netstandard2.1/RocksDb.Extensions.ProtoBufNet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/RocksDb.Extensions.ProtoBufNet.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RocksDb.Extensions.System.Text.Json/1.5.0": {
+        "type": "package",
+        "dependencies": {
+          "RocksDb.Extensions": "1.5.0",
+          "System.Text.Json": "6.0.7"
+        },
+        "compile": {
+          "lib/netstandard2.1/RocksDb.Extensions.System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/RocksDb.Extensions.System.Text.Json.dll": {
             "related": ".xml"
           }
         }
@@ -2707,19 +2862,6 @@
           }
         }
       },
-      "UnQLiteNet/1.0.5": {
-        "type": "package",
-        "compile": {
-          "lib/net45/UnQLiteNet.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/UnQLiteNet.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Jobs.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -2772,9 +2914,13 @@
           "OpenTelemetry.Instrumentation.Process": "0.5.0-beta.6",
           "OpenTelemetry.Instrumentation.Runtime": "1.9.0",
           "PasswordGenerator": "2.1.0",
+          "RocksDB": "9.10.0.55496",
+          "RocksDb.Extensions": "1.5.0",
+          "RocksDb.Extensions.ProtoBufNet": "1.5.0",
+          "RocksDb.Extensions.Protobuf": "1.5.0",
+          "RocksDb.Extensions.System.Text.Json": "1.5.0",
           "Serilog.AspNetCore": "8.0.2",
-          "Serilog.Sinks.OpenTelemetry": "4.1.0",
-          "UnQLiteNet": "1.0.5"
+          "Serilog.Sinks.OpenTelemetry": "4.1.0"
         },
         "compile": {
           "bin/placeholder/Jobs.Core.dll": {}
@@ -2865,6 +3011,32 @@
         "icon.png",
         "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.dll",
         "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.xml"
+      ]
+    },
+    "CommunityToolkit.HighPerformance/8.2.2": {
+      "sha512": "+zIp8d3sbtYaRbM6hqDs4Ui/z34j7DcUmleruZlYLE4CVxXq+MO8XJyIs42vzeTYFX+k0Iq1dEbBUnQ4z/Gnrw==",
+      "type": "package",
+      "path": "communitytoolkit.highperformance/8.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "License.md",
+        "ThirdPartyNotices.txt",
+        "communitytoolkit.highperformance.8.2.2.nupkg.sha512",
+        "communitytoolkit.highperformance.nuspec",
+        "lib/net6.0/CommunityToolkit.HighPerformance.dll",
+        "lib/net6.0/CommunityToolkit.HighPerformance.pdb",
+        "lib/net6.0/CommunityToolkit.HighPerformance.xml",
+        "lib/net7.0/CommunityToolkit.HighPerformance.dll",
+        "lib/net7.0/CommunityToolkit.HighPerformance.pdb",
+        "lib/net7.0/CommunityToolkit.HighPerformance.xml",
+        "lib/netstandard2.0/CommunityToolkit.HighPerformance.dll",
+        "lib/netstandard2.0/CommunityToolkit.HighPerformance.pdb",
+        "lib/netstandard2.0/CommunityToolkit.HighPerformance.xml",
+        "lib/netstandard2.1/CommunityToolkit.HighPerformance.dll",
+        "lib/netstandard2.1/CommunityToolkit.HighPerformance.pdb",
+        "lib/netstandard2.1/CommunityToolkit.HighPerformance.xml"
       ]
     },
     "Dapper/2.1.35": {
@@ -4668,6 +4840,50 @@
         "polly.ratelimiting.nuspec"
       ]
     },
+    "protobuf-net/3.1.25": {
+      "sha512": "vej8g3+5KpwuwA20xoOMJK9nUM/hr7maSu56pIqItmX28JbXF0co1/pD6Mg84+mhLYRQpKiSlOxIDvtaYojKWA==",
+      "type": "package",
+      "path": "protobuf-net/3.1.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/protobuf-net.dll",
+        "lib/net462/protobuf-net.xml",
+        "lib/net6.0/protobuf-net.dll",
+        "lib/net6.0/protobuf-net.xml",
+        "lib/netcoreapp3.1/protobuf-net.dll",
+        "lib/netcoreapp3.1/protobuf-net.xml",
+        "lib/netstandard2.0/protobuf-net.dll",
+        "lib/netstandard2.0/protobuf-net.xml",
+        "lib/netstandard2.1/protobuf-net.dll",
+        "lib/netstandard2.1/protobuf-net.xml",
+        "protobuf-net.3.1.25.nupkg.sha512",
+        "protobuf-net.nuspec",
+        "protobuf-net.png"
+      ]
+    },
+    "protobuf-net.Core/3.1.25": {
+      "sha512": "LqDpeU+rbzO/uD2iYUBIGCgaeCBrxwmCDGVmUNZ67yShrGLlLJHwFMcDsGZUCxE2iHdRJawMUkTfs3HYIXiqWg==",
+      "type": "package",
+      "path": "protobuf-net.core/3.1.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/protobuf-net.Core.dll",
+        "lib/net462/protobuf-net.Core.xml",
+        "lib/net6.0/protobuf-net.Core.dll",
+        "lib/net6.0/protobuf-net.Core.xml",
+        "lib/netcoreapp3.1/protobuf-net.Core.dll",
+        "lib/netcoreapp3.1/protobuf-net.Core.xml",
+        "lib/netstandard2.0/protobuf-net.Core.dll",
+        "lib/netstandard2.0/protobuf-net.Core.xml",
+        "lib/netstandard2.1/protobuf-net.Core.dll",
+        "lib/netstandard2.1/protobuf-net.Core.xml",
+        "protobuf-net.core.3.1.25.nupkg.sha512",
+        "protobuf-net.core.nuspec",
+        "protobuf-net.png"
+      ]
+    },
     "Refit/6.1.15": {
       "sha512": "T1qNkTmPvSsPxhZMvzTySdx9c0Zr87DAXFMSx3rK2RxBInzcPz+9qJPVkkF28/9Dn9TTpp9vN6Sn5Hhms837fQ==",
       "type": "package",
@@ -4709,6 +4925,86 @@
         "refit.httpclientfactory.6.1.15.nupkg.sha512",
         "refit.httpclientfactory.nuspec",
         "refit_logo.png"
+      ]
+    },
+    "RocksDB/9.10.0.55496": {
+      "sha512": "wHGZfcTvpIMsbDWkWEeEPfGi/E9/6TT2Klf+rAUJ1rNDxLEAmlEz1dPTCNimIptWWvIoN3VZfxSB57BomDDTKQ==",
+      "type": "package",
+      "path": "rocksdb/9.10.0.55496",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/RocksDbSharp.dll",
+        "lib/net6.0/RocksDbSharp.dll",
+        "lib/net7.0/RocksDbSharp.dll",
+        "lib/net8.0/RocksDbSharp.dll",
+        "lib/net9.0/RocksDbSharp.dll",
+        "lib/netcoreapp3.1/RocksDbSharp.dll",
+        "lib/netstandard2.0/RocksDbSharp.dll",
+        "lib/netstandard2.1/RocksDbSharp.dll",
+        "logo-128.png",
+        "rocksdb.9.10.0.55496.nupkg.sha512",
+        "rocksdb.nuspec",
+        "runtimes/linux-arm64/native/librocksdb-musl.so",
+        "runtimes/linux-arm64/native/librocksdb.so",
+        "runtimes/linux-x64/native/librocksdb-jemalloc.so",
+        "runtimes/linux-x64/native/librocksdb-musl.so",
+        "runtimes/linux-x64/native/librocksdb.so",
+        "runtimes/osx-arm64/native/librocksdb.dylib",
+        "runtimes/osx-x64/native/librocksdb.dylib",
+        "runtimes/win-x64/native/rocksdb.dll"
+      ]
+    },
+    "RocksDb.Extensions/1.5.0": {
+      "sha512": "Bc9lODMt/8SN7QFNFXUCYGJ4W0x6Ip/ae/IYOxGQF0w0uZa5dI7MrqPxeMVWX4TKNef82SgZk1jND9gWZ91vTg==",
+      "type": "package",
+      "path": "rocksdb.extensions/1.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/RocksDb.Extensions.dll",
+        "lib/netstandard2.1/RocksDb.Extensions.xml",
+        "rocksdb.extensions.1.5.0.nupkg.sha512",
+        "rocksdb.extensions.nuspec"
+      ]
+    },
+    "RocksDb.Extensions.Protobuf/1.5.0": {
+      "sha512": "fdsJRFUtd624nmBxgXk2oMsq9yYSUfpE6QYgg684GFie0l0IAV18Y5hhHht1lLgXvp+MYc9L0CcA8eLtXSQOyg==",
+      "type": "package",
+      "path": "rocksdb.extensions.protobuf/1.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/RocksDb.Extensions.Protobuf.dll",
+        "lib/netstandard2.1/RocksDb.Extensions.Protobuf.xml",
+        "rocksdb.extensions.protobuf.1.5.0.nupkg.sha512",
+        "rocksdb.extensions.protobuf.nuspec"
+      ]
+    },
+    "RocksDb.Extensions.ProtoBufNet/1.5.0": {
+      "sha512": "JcCunJBJDqpR96uyv6Xn24GEFuwSOPpw9tUR3B1of9lWLTpzlNeg2UaugVz0rcCiykanzqvdJG/letERYZN6gw==",
+      "type": "package",
+      "path": "rocksdb.extensions.protobufnet/1.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/RocksDb.Extensions.ProtoBufNet.dll",
+        "lib/netstandard2.1/RocksDb.Extensions.ProtoBufNet.xml",
+        "rocksdb.extensions.protobufnet.1.5.0.nupkg.sha512",
+        "rocksdb.extensions.protobufnet.nuspec"
+      ]
+    },
+    "RocksDb.Extensions.System.Text.Json/1.5.0": {
+      "sha512": "M/imqGBOKAVJHJdS3KtPqDrwWDqzvvRmqVaSouYe/SvRpLtHqpXkQYUS9NjjfjtoWjDaCkCdD3bFbdd2QzBntQ==",
+      "type": "package",
+      "path": "rocksdb.extensions.system.text.json/1.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/RocksDb.Extensions.System.Text.Json.dll",
+        "lib/netstandard2.1/RocksDb.Extensions.System.Text.Json.xml",
+        "rocksdb.extensions.system.text.json.1.5.0.nupkg.sha512",
+        "rocksdb.extensions.system.text.json.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -7442,21 +7738,6 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "UnQLiteNet/1.0.5": {
-      "sha512": "ENmh7cLTJ3w1KzCDU9zWTey3tAym9Oz6cpG2p04hM8nM9EDVyfyTUqdtLia7R8VO1cfYYmGIgENqbTxyZ47ztw==",
-      "type": "package",
-      "path": "unqlitenet/1.0.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/x64/unqlite.dll",
-        "build/x86/unqlite.dll",
-        "lib/net45/UnQLiteNet.dll",
-        "lib/net45/UnQLiteNet.xml",
-        "unqlitenet.1.0.5.nupkg.sha512",
-        "unqlitenet.nuspec"
-      ]
-    },
     "Jobs.Common/1.0.0": {
       "type": "project",
       "path": "../Jobs.Common/Jobs.Common.csproj",
@@ -7548,17 +7829,5 @@
         "runtimeIdentifierGraphPath": "/home/jupiter/.dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'UnQLiteNet 1.0.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "UnQLiteNet",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

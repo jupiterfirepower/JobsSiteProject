@@ -438,6 +438,26 @@
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "RocksDB": {
+              "target": "Package",
+              "version": "[9.10.0.55496, )"
+            },
+            "RocksDb.Extensions": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "RocksDb.Extensions.ProtoBufNet": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "RocksDb.Extensions.Protobuf": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "RocksDb.Extensions.System.Text.Json": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[8.0.2, )"
@@ -445,10 +465,6 @@
             "Serilog.Sinks.OpenTelemetry": {
               "target": "Package",
               "version": "[4.1.0, )"
-            },
-            "UnQLiteNet": {
-              "target": "Package",
-              "version": "[1.0.5, )"
             }
           },
           "imports": [

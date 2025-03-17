@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/Jobs.VacancyApi.props" />
-</Project>

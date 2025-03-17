@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/Jobs.AccountApi.props" />
-</Project>

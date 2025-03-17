@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "t0wkgjZUuKA=",
+  "dgSpecHash": "vg+m09MECGo=",
   "success": true,
   "projectFilePath": "/home/jupiter/RiderProjects/JobProject/BlazorApp2/BlazorApp2/BlazorApp2.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "/home/jupiter/.nuget/packages/asp.versioning.http/8.1.0/asp.versioning.http.8.1.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/asp.versioning.mvc/8.1.0/asp.versioning.mvc.8.1.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/asp.versioning.mvc.apiexplorer/8.1.0/asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/communitytoolkit.highperformance/8.2.2/communitytoolkit.highperformance.8.2.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
     "/home/jupiter/.nuget/packages/duckdb.net.bindings.full/1.2.1/duckdb.net.bindings.full.1.2.1.nupkg.sha512",
     "/home/jupiter/.nuget/packages/duckdb.net.data.full/1.2.1/duckdb.net.data.full.1.2.1.nupkg.sha512",
@@ -108,10 +109,17 @@
     "/home/jupiter/.nuget/packages/polly.extensions/8.4.2/polly.extensions.8.4.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/polly.extensions.http/3.0.0/polly.extensions.http.3.0.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/polly.ratelimiting/8.4.2/polly.ratelimiting.8.4.2.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/protobuf-net/3.1.25/protobuf-net.3.1.25.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/protobuf-net.core/3.1.25/protobuf-net.core.3.1.25.nupkg.sha512",
     "/home/jupiter/.nuget/packages/qatoolkit.auth/0.2.10/qatoolkit.auth.0.2.10.nupkg.sha512",
     "/home/jupiter/.nuget/packages/qatoolkit.core/0.3.15/qatoolkit.core.0.3.15.nupkg.sha512",
     "/home/jupiter/.nuget/packages/refit/6.1.15/refit.6.1.15.nupkg.sha512",
     "/home/jupiter/.nuget/packages/refit.httpclientfactory/6.1.15/refit.httpclientfactory.6.1.15.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/rocksdb/9.10.0.55496/rocksdb.9.10.0.55496.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/rocksdb.extensions/1.5.0/rocksdb.extensions.1.5.0.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/rocksdb.extensions.protobuf/1.5.0/rocksdb.extensions.protobuf.1.5.0.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/rocksdb.extensions.protobufnet/1.5.0/rocksdb.extensions.protobufnet.1.5.0.nupkg.sha512",
+    "/home/jupiter/.nuget/packages/rocksdb.extensions.system.text.json/1.5.0/rocksdb.extensions.system.text.json.1.5.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/jupiter/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -181,19 +189,7 @@
     "/home/jupiter/.nuget/packages/system.text.json/8.0.4/system.text.json.8.0.4.nupkg.sha512",
     "/home/jupiter/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/home/jupiter/.nuget/packages/system.threading.ratelimiting/8.0.0/system.threading.ratelimiting.8.0.0.nupkg.sha512",
-    "/home/jupiter/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
-    "/home/jupiter/.nuget/packages/unqlitenet/1.0.5/unqlitenet.1.0.5.nupkg.sha512"
+    "/home/jupiter/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'UnQLiteNet 1.0.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "UnQLiteNet",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

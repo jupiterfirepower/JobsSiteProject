@@ -393,11 +393,6 @@ app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ok
             return TypedResults.BadRequest();
         }
 
-        /*if (id <= 0)
-        {
-            return TypedResults.BadRequest();
-        }*/
-
         var company = await mediatr.Send(new GetCompanyQuery(id));
         return company == null ? TypedResults.NotFound() : TypedResults.Ok(company);
     })
@@ -440,16 +435,6 @@ app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<Co
                 return TypedResults.BadRequest();
             }
             
-            /*if (company.CompanyId != 0)
-            {
-                return TypedResults.BadRequest();
-            }
-                
-            if (!company.IsValid())
-            {
-                return TypedResults.BadRequest();
-            }*/
-
             var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
 
             var result = await mediatr.Send(new CreateCompanyCommand(sanitized));
@@ -499,16 +484,6 @@ app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ba
             return TypedResults.BadRequest();
         }
 
-        /*if (id != company.CompanyId || id <= 0)
-        {
-            return TypedResults.BadRequest();
-        }
-
-        if (!company.IsValid())
-        {
-            return TypedResults.BadRequest();
-        }*/
-            
         var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
         var result = await mediatr.Send(new UpdateCompanyCommand(sanitized));
 
@@ -554,11 +529,6 @@ app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async Task<Results
             return TypedResults.BadRequest();
         }
 
-        /*if (id <= 0)
-        {
-            return TypedResults.BadRequest();
-        }*/
-        
         var result = await mediatr.Send(new DeleteCompanyCommand(id));
         return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
     })

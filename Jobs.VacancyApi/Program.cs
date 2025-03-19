@@ -302,31 +302,7 @@ try
 
         return false;
     }
-    
-    // Create a reusable logger
-    var loggerFactory = builder.Services.BuildServiceProvider()
-        .GetRequiredService<ILoggerFactory>();
-    var groupLogger = loggerFactory
-        .CreateLogger("dict-endpoints\"");
-    
-    // Create the group
-    var group = app
-        .MapGroup("dict-endpoints")
-        .WithTags("Db Dictionary Endpoints")
-        .AddEndpointFilter(async (context, next) =>
-        {
-            groupLogger.LogTrace("Entering dict-endpoints");
-            // Omitted argument logging
-            var result = await next(context);
-            groupLogger.LogTrace("Exiting dict-endpoints");
-            return result;
-        });
-    
-    group.MapGet("demo/", ()
-        => "GET endpoint from the organizing-endpoints group.");
-    group.MapGet("demo/{id}", (int id)
-        => $"GET {id} endpoint from the organizing-endpoints group.");
-
+   
     void Guards(ISender mediatr, IApiKeyService service,
         IEncryptionService cryptService, ISignedNonceService signedNonceService,
         IHttpContextAccessor httpContextAccessor)
@@ -337,6 +313,11 @@ try
         ArgumentNullException.ThrowIfNull(signedNonceService, nameof(signedNonceService));
         ArgumentNullException.ThrowIfNull(httpContextAccessor, nameof(httpContextAccessor));
     }
+    
+    // Create the group
+    var group = app
+        .MapGroup("dict-endpoints")
+        .WithTags("DB Dictionary Endpoints");
     
     app.MapGet("api/v{version:apiVersion}/categories", async Task<Results<Ok<List<CategoryDto>>, BadRequest>> (HttpContext context, 
             [FromServices] ISender mediatr, 
@@ -425,11 +406,6 @@ try
                 return TypedResults.BadRequest();
             }
             
-            /*if (id <= 0)
-            {
-                return TypedResults.BadRequest();
-            }*/
-            
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
@@ -506,11 +482,6 @@ try
             {
                 return TypedResults.BadRequest();
             }
-            
-            /*if (id <= 0)
-            {
-                return TypedResults.BadRequest();
-            }*/
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
@@ -589,11 +560,6 @@ try
                 return TypedResults.BadRequest();
             }
 
-            /*if (id <= 0)
-            {
-                return TypedResults.BadRequest();
-            }*/
-
             var vacancy = await mediatr.Send(new GetVacancyQuery(id));
             return vacancy == null ? TypedResults.NotFound() : TypedResults.Ok(vacancy);
         })
@@ -641,16 +607,6 @@ try
                 return TypedResults.BadRequest();
             }
             
-            if (vacancy.VacancyId != 0)
-            {
-                return TypedResults.BadRequest();
-            }
-            
-            if (!vacancy.IsValid())
-            {
-                return TypedResults.BadRequest();
-            }
-
             var sanitized = SanitizeVacancyInDto(vacancy);
 
             var result = await mediatr.Send(new CreateVacancyCommand(sanitized));
@@ -700,16 +656,6 @@ try
                 return TypedResults.BadRequest();
             }
 
-            /*if (id != vacancy.VacancyId || id <= 0)
-            {
-                return TypedResults.BadRequest();
-            }
-
-            if (!vacancy.IsValid())
-            {
-                return TypedResults.BadRequest();
-            }*/
-            
             var sanitized = SanitizeVacancyInDto(vacancy);
 
             var result = await mediatr.Send(new UpdateVacancyCommand(sanitized));
@@ -755,11 +701,6 @@ try
             {
                 return TypedResults.BadRequest();
             }
-
-            /*if (id <= 0)
-            {
-                return TypedResults.BadRequest();
-            }*/
 
             var result = await mediatr.Send(new DeleteVacancyCommand(id));
             return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();

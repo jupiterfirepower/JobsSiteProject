@@ -468,7 +468,8 @@ app.MapPost("api/v{version:apiVersion}/register", async Task<Results<Ok<Register
             var result = await accountService.RefreshTokenAsync(refreshToken).ConfigureAwait(false);
 
             return TypedResults.Ok(result);
-        }).WithName("Refresh")
+        })
+        .WithName("Refresh")
         .WithOpenApi()
         .MapApiVersion(apiVersionSet, version1)
         .AllowAnonymous()

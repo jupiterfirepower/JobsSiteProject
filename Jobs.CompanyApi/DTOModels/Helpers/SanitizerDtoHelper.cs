@@ -9,8 +9,8 @@ public static class SanitizerDtoHelper
         var result = new CompanyInDto(entity.CompanyId,
             HtmlSanitizerHelper.Sanitize(entity.CompanyName),
             HtmlSanitizerHelper.Sanitize(entity.CompanyDescription),
-            entity.CompanyLogoPath,
-            entity.CompanyLink,
+            HtmlSanitizerHelper.Sanitize(entity.CompanyLogoPath),
+            HtmlSanitizerHelper.Sanitize(entity.CompanyLink),
             entity.IsActive,
             entity.IsVisible);
        

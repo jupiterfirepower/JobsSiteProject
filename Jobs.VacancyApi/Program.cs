@@ -10,6 +10,7 @@ using Jobs.Common.Options;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.Extentions;
+using Jobs.Core.Filters;
 using Jobs.Core.Handlers;
 using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
@@ -424,17 +425,29 @@ try
                 return TypedResults.BadRequest();
             }
             
-            if (id <= 0)
+            /*if (id <= 0)
             {
                 return TypedResults.BadRequest();
-            }
+            }*/
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var result = await mediatr.Send(new GetEmploymentTypeQuery(id));
             return result != null ? TypedResults.Ok(result) : TypedResults.NotFound();
-        }).WithName("GetEmploymentType")
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var id = context.GetArgument<int>(0);
+   
+            if (id <= 0)
+            {
+                return TypedResults.BadRequest();
+            }
+
+            return await next(context);
+        })
+        .WithName("GetEmploymentType")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
@@ -494,17 +507,29 @@ try
                 return TypedResults.BadRequest();
             }
             
-            if (id <= 0)
+            /*if (id <= 0)
             {
                 return TypedResults.BadRequest();
-            }
+            }*/
             
             var ipAddress = context.Request.GetIpAddress();
             Log.Information($"ClientIPAddress - {ipAddress}.");
             
             var result = await mediatr.Send(new GetWorkTypeQuery(id));
             return result != null ? TypedResults.Ok(result) : TypedResults.NotFound();
-        }).WithName("GetWorkType")
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var id = context.GetArgument<int>(0);
+   
+            if (id <= 0)
+            {
+                return TypedResults.BadRequest();
+            }
+
+            return await next(context);
+        })
+        .WithName("GetWorkType")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
@@ -564,14 +589,26 @@ try
                 return TypedResults.BadRequest();
             }
 
+            /*if (id <= 0)
+            {
+                return TypedResults.BadRequest();
+            }*/
+
+            var vacancy = await mediatr.Send(new GetVacancyQuery(id));
+            return vacancy == null ? TypedResults.NotFound() : TypedResults.Ok(vacancy);
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var id = context.GetArgument<int>(0);
+   
             if (id <= 0)
             {
                 return TypedResults.BadRequest();
             }
 
-            var vacancy = await mediatr.Send(new GetVacancyQuery(id));
-            return vacancy == null ? TypedResults.NotFound() : TypedResults.Ok(vacancy);
-        }).WithName("GetVacancy")
+            return await next(context);
+        })
+        .WithName("GetVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
@@ -623,7 +660,20 @@ try
             await publisher.Publish(new VacancyCreatedNotification(result.VacancyId));
 
             return TypedResults.Created($"/vacancies/{result.VacancyId}", result);
-        }).WithName("AddVacancy")
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var vacancy = context.GetArgument<VacancyInDto>(0);
+   
+            if (vacancy.VacancyId != 0)
+            {
+                return TypedResults.BadRequest();
+            }
+
+            return await next(context);
+        })
+        .AddEndpointFilter<DtoModeValidationFilter<VacancyInDto>>()
+        .WithName("AddVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
@@ -644,14 +694,13 @@ try
         {
             Guards(mediatr, service, cryptService, signedNonceService, httpContextAccessor);
             
-            if (IsBadRequest(httpContextAccessor, 
-                    cryptService, signedNonceService, service, 
-                    apiKey, signedNonce, apiSecret))
+            if (IsBadRequest(httpContextAccessor, cryptService, 
+                    signedNonceService, service, apiKey, signedNonce, apiSecret))
             {
                 return TypedResults.BadRequest();
             }
 
-            if (id != vacancy.VacancyId || id <= 0)
+            /*if (id != vacancy.VacancyId || id <= 0)
             {
                 return TypedResults.BadRequest();
             }
@@ -659,14 +708,28 @@ try
             if (!vacancy.IsValid())
             {
                 return TypedResults.BadRequest();
-            }
+            }*/
             
             var sanitized = SanitizeVacancyInDto(vacancy);
 
             var result = await mediatr.Send(new UpdateVacancyCommand(sanitized));
 
             return result > 0 ? TypedResults.NoContent() : TypedResults.NotFound();
-        }).WithName("ChangeVacancy")
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var id = context.GetArgument<int>(0);
+            var vacancy = context.GetArgument<VacancyInDto>(1);
+   
+            if (id <= 0 || id != vacancy.VacancyId)
+            {
+                return TypedResults.BadRequest();
+            }
+
+            return await next(context);
+        })
+        .AddEndpointFilter<DtoModeValidationFilter<VacancyInDto>>()
+        .WithName("ChangeVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();
@@ -693,14 +756,26 @@ try
                 return TypedResults.BadRequest();
             }
 
+            /*if (id <= 0)
+            {
+                return TypedResults.BadRequest();
+            }*/
+
+            var result = await mediatr.Send(new DeleteVacancyCommand(id));
+            return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
+        })
+        .AddEndpointFilter(async (context, next) =>
+        {
+            var id = context.GetArgument<int>(0);
+   
             if (id <= 0)
             {
                 return TypedResults.BadRequest();
             }
 
-            var result = await mediatr.Send(new DeleteVacancyCommand(id));
-            return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
-        }).WithName("RemoveVacancy")
+            return await next(context);
+        })
+        .WithName("RemoveVacancy")
         .MapApiVersion(apiVersionSet, version1)
         .RequireRateLimiting("FixedWindow")
         .WithOpenApi();

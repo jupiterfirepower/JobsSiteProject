@@ -20,6 +20,7 @@ using Jobs.CompanyApi.Services.Contracts;
 using Jobs.Core.Contracts;
 using Jobs.Core.Contracts.Providers;
 using Jobs.Core.Extentions;
+using Jobs.Core.Filters;
 using Jobs.Core.Handlers;
 using Jobs.Core.Managers;
 using Jobs.Core.Middleware;
@@ -392,14 +393,26 @@ app.MapGet("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ok
             return TypedResults.BadRequest();
         }
 
+        /*if (id <= 0)
+        {
+            return TypedResults.BadRequest();
+        }*/
+
+        var company = await mediatr.Send(new GetCompanyQuery(id));
+        return company == null ? TypedResults.NotFound() : TypedResults.Ok(company);
+    })
+    .AddEndpointFilter(async (context, next) =>
+    {
+        var id = context.GetArgument<int>(0);
+    
         if (id <= 0)
         {
             return TypedResults.BadRequest();
         }
 
-        var company = await mediatr.Send(new GetCompanyQuery(id));
-        return company == null ? TypedResults.NotFound() : TypedResults.Ok(company);
-    }).WithName("GetCompany")
+        return await next(context);
+    })
+    .WithName("GetCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
@@ -427,7 +440,7 @@ app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<Co
                 return TypedResults.BadRequest();
             }
             
-            if (company.CompanyId != 0)
+            /*if (company.CompanyId != 0)
             {
                 return TypedResults.BadRequest();
             }
@@ -435,8 +448,8 @@ app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<Co
             if (!company.IsValid())
             {
                 return TypedResults.BadRequest();
-            }
-            
+            }*/
+
             var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
 
             var result = await mediatr.Send(new CreateCompanyCommand(sanitized));
@@ -445,7 +458,20 @@ app.MapPost("api/v{version:apiVersion}/companies", async Task<Results<Created<Co
             await publisher.Publish(new CompanyCreatedNotification(result.CompanyId));
             
             return TypedResults.Created($"/companies/{result.CompanyId}", result);
-    }).WithName("AddCompany")
+    })
+    .AddEndpointFilter(async (context, next) =>
+    {
+        var company = context.GetArgument<CompanyInDto>(0);
+    
+        if (company.CompanyId != 0)
+        {
+            return TypedResults.BadRequest();
+        }
+
+        return await next(context);
+    })
+    .AddEndpointFilter<DtoModeValidationFilter<CompanyInDto>>()
+    .WithName("AddCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
@@ -473,7 +499,7 @@ app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ba
             return TypedResults.BadRequest();
         }
 
-        if (id != company.CompanyId || id <= 0)
+        /*if (id != company.CompanyId || id <= 0)
         {
             return TypedResults.BadRequest();
         }
@@ -481,13 +507,27 @@ app.MapPut("api/v{version:apiVersion}/companies/{id:int}", async Task<Results<Ba
         if (!company.IsValid())
         {
             return TypedResults.BadRequest();
-        }
+        }*/
             
         var sanitized = SanitizerDtoHelper.SanitizeCompanyInDto(company);
         var result = await mediatr.Send(new UpdateCompanyCommand(sanitized));
 
         return result > 0 ? TypedResults.NoContent() : TypedResults.NotFound();
-    }).WithName("ChangeCompany")
+    })
+    .AddEndpointFilter(async (context, next) =>
+    {
+        var id = context.GetArgument<int>(0);
+        var company = context.GetArgument<CompanyInDto>(1);
+    
+        if (id <= 0 || id != company.CompanyId)
+        {
+            return TypedResults.BadRequest();
+        }
+
+        return await next(context);
+    })
+    .AddEndpointFilter<DtoModeValidationFilter<CompanyInDto>>()
+    .WithName("ChangeCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();
@@ -514,14 +554,26 @@ app.MapDelete("api/v{version:apiVersion}/companies/{id:int}", async Task<Results
             return TypedResults.BadRequest();
         }
 
+        /*if (id <= 0)
+        {
+            return TypedResults.BadRequest();
+        }*/
+        
+        var result = await mediatr.Send(new DeleteCompanyCommand(id));
+        return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
+    })
+    .AddEndpointFilter(async (context, next) =>
+    {
+        var id = context.GetArgument<int>(0);
+   
         if (id <= 0)
         {
             return TypedResults.BadRequest();
         }
-        
-        var result = await mediatr.Send(new DeleteCompanyCommand(id));
-        return result == -1 ? TypedResults.NotFound() : TypedResults.NoContent();
-    }).WithName("RemoveCompany")
+
+        return await next(context);
+    })
+    .WithName("RemoveCompany")
     .MapApiVersion(apiVersionSet, version1)
     .RequireRateLimiting("FixedWindow")
     .WithOpenApi();

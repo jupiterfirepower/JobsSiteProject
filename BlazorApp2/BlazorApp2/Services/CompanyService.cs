@@ -18,7 +18,7 @@ public class CompanyService(ICompanyClientService clientService): ICompanyServic
         if (string.IsNullOrWhiteSpace(logoPath))
             throw new ArgumentNullException(nameof(logoPath));
 
-        var company = new CompanyDataInDto(0, name,note,  logoPath, link,true, true);
+        var company = new CompanyDataInDto(0, name,note,  logoPath, link, true, true);
         
         return await clientService.AddCompanyAsync(company);
     }

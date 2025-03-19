@@ -1,6 +1,6 @@
-using Jobs.CompanyApi.DTOModels;
 using Jobs.CompanyApi.Features.Commands;
 using Jobs.CompanyApi.Services.Contracts;
+using Jobs.Entities.DTO;
 using MediatR;
 
 namespace Jobs.CompanyApi.Features.Handlers;

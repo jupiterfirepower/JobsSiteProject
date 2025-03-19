@@ -1,9 +1,10 @@
 namespace Jobs.Entities.DTO;
 
-public record CompanyInDto( int CompanyId,
-    string CompanyName,
+public record CompanyDataInDto(
+    int CompanyId, 
+    string CompanyName, 
     string CompanyDescription,
     string CompanyLogoPath,
     string CompanyLink,
     bool IsVisible = true,
-    bool IsActive = true );
+    bool IsActive = true);

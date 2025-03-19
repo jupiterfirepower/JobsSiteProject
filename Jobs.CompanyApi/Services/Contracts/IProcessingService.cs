@@ -1,4 +1,4 @@
-using Jobs.CompanyApi.DTOModels;
+using Jobs.Entities.DTO;
 
 namespace Jobs.CompanyApi.Services.Contracts;
 

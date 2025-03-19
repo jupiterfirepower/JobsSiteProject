@@ -1,6 +1,7 @@
 using Jobs.Common.Helpers;
+using Jobs.Entities.DTO;
 
-namespace Jobs.CompanyApi.DTOModels.Helpers;
+namespace Jobs.CompanyApi.Helpers;
 
 public static class SanitizerDtoHelper
 {

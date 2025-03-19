@@ -1,7 +1,7 @@
 using AutoMapper;
 using Jobs.Common.Contracts;
-using Jobs.CompanyApi.DTOModels;
 using Jobs.CompanyApi.Services.Contracts;
+using Jobs.Entities.DTO;
 using Jobs.Entities.Models;
 
 namespace Jobs.CompanyApi.Services;

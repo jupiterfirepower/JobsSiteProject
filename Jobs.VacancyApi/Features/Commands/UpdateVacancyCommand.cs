@@ -1,4 +1,4 @@
-using Jobs.Entities.DTO;
+using Jobs.DTO.In;
 using MediatR;
 
 namespace Jobs.VacancyApi.Features.Commands;

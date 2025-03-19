@@ -1,5 +1,6 @@
 using AutoMapper;
-using Jobs.Entities.DTO;
+using Jobs.DTO;
+using Jobs.DTO.In;
 using Jobs.Entities.Models;
 
 namespace Jobs.CompanyApi.Profiles;

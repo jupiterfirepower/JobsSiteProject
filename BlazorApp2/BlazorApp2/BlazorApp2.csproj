@@ -14,6 +14,7 @@
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <ProjectReference Include="..\..\Jobs.Common\Jobs.Common.csproj" />
     <ProjectReference Include="..\..\Jobs.Core\Jobs.Core.csproj" />
+    <ProjectReference Include="..\..\Jobs.Dto\Jobs.Dto.csproj" />
     <ProjectReference Include="..\..\Jobs.Entities\Jobs.Entities.csproj" />
     <ProjectReference Include="..\BlazorApp2.Client\BlazorApp2.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.8" />

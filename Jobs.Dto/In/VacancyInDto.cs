@@ -1,4 +1,4 @@
-namespace Jobs.Entities.DTO;
+namespace Jobs.DTO.In;
 
 public record VacancyInDto(
     int VacancyId,

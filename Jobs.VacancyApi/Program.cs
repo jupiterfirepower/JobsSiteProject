@@ -17,7 +17,8 @@ using Jobs.Core.Middleware;
 using Jobs.Core.Observability.Options;
 using Jobs.Core.Providers;
 using Jobs.Core.Services;
-using Jobs.Entities.DTO;
+using Jobs.DTO;
+using Jobs.DTO.In;
 using Jobs.Entities.Models;
 using Jobs.VacancyApi.Contracts;
 using Jobs.VacancyApi.Data;
@@ -32,7 +33,6 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using OpenTelemetry.Resources;
 using Serilog;
 

@@ -1,4 +1,4 @@
-using Jobs.Entities.DTO;
+using Jobs.DTO;
 using Jobs.VacancyApi.Contracts;
 using Jobs.VacancyApi.Features.Queries;
 using MediatR;

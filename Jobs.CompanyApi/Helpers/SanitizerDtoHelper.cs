@@ -1,5 +1,5 @@
 using Jobs.Common.Helpers;
-using Jobs.Entities.DTO;
+using Jobs.DTO.In;
 
 namespace Jobs.CompanyApi.Helpers;
 

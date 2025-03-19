@@ -1,7 +1,7 @@
 using FluentValidation;
-using Jobs.Entities.DTO;
+using Jobs.DTO.In;
 
-namespace Jobs.Entities.Validators;
+namespace Jobs.DTO.Validators;
 
 public class VacancyInDtoValidator : AbstractValidator<VacancyInDto>
 {

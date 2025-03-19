@@ -1,5 +1,5 @@
 using FluentValidation;
-using Jobs.Entities.DTO;
+using Jobs.DTO.In;
 
 namespace Jobs.CompanyApi.Validators;
 

@@ -1,4 +1,5 @@
-using Jobs.Entities.DTO;
+using Jobs.DTO;
+using Jobs.DTO.In;
 
 namespace BlazorApp2.Contracts;
 

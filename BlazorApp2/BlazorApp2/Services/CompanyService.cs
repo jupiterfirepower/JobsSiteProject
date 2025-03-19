@@ -1,7 +1,7 @@
 using BlazorApp2.Contracts;
 using BlazorApp2.Contracts.Clients;
-using Jobs.Entities.DataModel;
-using Jobs.Entities.DTO;
+using Jobs.DTO;
+using Jobs.DTO.In;
 
 namespace BlazorApp2.Services;
 

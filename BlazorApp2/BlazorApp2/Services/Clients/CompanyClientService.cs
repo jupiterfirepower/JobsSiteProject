@@ -1,12 +1,11 @@
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using BlazorApp2.Contracts.Clients;
 using BlazorApp2.Settings;
 using Jobs.Common.Helpers;
 using Jobs.Common.SerializationSettings;
-using Jobs.Entities.DataModel;
-using Jobs.Entities.DTO;
+using Jobs.DTO;
+using Jobs.DTO.In;
 using Microsoft.Extensions.Options;
 
 namespace BlazorApp2.Services.Clients;

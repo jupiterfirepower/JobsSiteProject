@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Jobs.Entities.DTO;
+namespace Jobs.DTO;
 
 public record CompanyDto(
     [property: JsonPropertyName("companyId")]

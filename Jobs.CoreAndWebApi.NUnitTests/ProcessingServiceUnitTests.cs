@@ -1,7 +1,7 @@
 using System.Reflection;
 using Dapper;
 using Jobs.Common.Contracts;
-using Jobs.Entities.DTO;
+using Jobs.DTO.In;
 using Jobs.Entities.Models;
 using Jobs.VacancyApi.Contracts;
 using Jobs.VacancyApi.Data;

@@ -18,20 +18,10 @@
   &lt;Project Location="/home/jupiter/RiderProjects/JobProject/JobsWebApiNUnitTests" Presentation="&amp;lt;JobsWebApiNUnitTests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=562a5017_002D3330_002D4506_002Db867_002D1eb9c89c5102/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddAndGetApiKeyTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.DuckDbApiKeyStorageServiceProviderTest.AddAndGetAsyncApiKeyTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests" Presentation="&amp;lt;UnitTests&amp;gt;\&amp;lt;Jobs.CoreAndWebApi.NUnitTests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=706fdc5f_002D40e7_002D48f8_002D850f_002D3736dcf483c1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddApiKeyTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbApiKeyRepositoryUnitTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbPasswordRepositoryUnitTests.AddCredentialPasswordTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.ArangoDbPasswordRepositoryUnitTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.UnqliteApiKeyRepositoryUnitTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.NaiveEncryptionServiceUnitTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.DuckDBApiKeyStorageServiceProviderTest.AddAndGetApiKeyTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D09D39AD-9BAE-4B14-98BF-9725FB38B12A::net8.0::JobsWebApiNUnitTests.DuckDbApiKeyStorageServiceProviderTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/home/jupiter/RiderProjects/JobProject/Jobs.CoreAndWebApi.NUnitTests" Presentation="&amp;lt;UnitTests&amp;gt;\&amp;lt;Jobs.CoreAndWebApi.NUnitTests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	
 	

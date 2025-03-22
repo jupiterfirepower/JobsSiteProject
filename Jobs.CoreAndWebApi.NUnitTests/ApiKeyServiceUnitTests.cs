@@ -9,6 +9,7 @@ using Jobs.VacancyApi.Data;
 using Jobs.VacancyApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Jobs.Core.Managers;
 
 namespace JobsWebApiNUnitTests;
 
@@ -25,9 +26,11 @@ public class ApiKeyServiceUnitTests
             options.UseInMemoryDatabase("TestDb"));
         
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
-        services.AddScoped<IApiKeyStorageServiceProvider, MemoryApiKeyStorageServiceProvider>();
+            
+        services.AddScoped<IApiKeyStorageServiceProvider, MemoryApiKeyStorageServiceProvider>(x => new MemoryApiKeyStorageServiceProvider());
         services.AddScoped<ISecretApiKeyRepository, SecretApiKeyRepository>();
-        services.AddScoped<ISecretApiService, SecretApiService>(x=>new SecretApiService("12345678"));
+        services.AddScoped<IApiKeyManagerServiceProvider, ApiKeyManagerServiceProvider>();
+        services.AddScoped<ISecretApiService, SecretApiService>(x=> new SecretApiService("12345678"));
         services.AddScoped<IApiKeyService, ApiKeyService>();
 
         _serviceProvider = services.BuildServiceProvider();
@@ -47,7 +50,6 @@ public class ApiKeyServiceUnitTests
         var service = scopedServices.GetRequiredService<IApiKeyService>();
         var context = scopedServices.GetRequiredService<JobsDbContext>();
         var serviceProvider = scopedServices.GetRequiredService<IApiKeyStorageServiceProvider>();
-        
 
         /*
         var testApiKey = new SecretApiKey

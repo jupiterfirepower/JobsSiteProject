@@ -2,10 +2,10 @@ using System.Linq.Expressions;
 using Jobs.Common.Contracts;
 using Jobs.Common.Options;
 using Jobs.Entities.Models;
-using Jobs.VacancyApi.Data;
+using Jobs.ReferenceApi.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Jobs.VacancyApi.Repository;
+namespace Jobs.ReferenceApi.Repositories;
 
 public class EmploymentTypeRepository(JobsDbContext context): IGenericRepository<EmploymentType>, IDisposable
 {

@@ -33,9 +33,9 @@ public class ProcessingServiceUnitTests
             options.UseNpgsql("Server=localhost;Port=5432;Database=jobs_db;User Id=admin;Password=newpwd;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=20;"));
         
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
-        services.AddScoped<IGenericRepository<Category>, CategoryRepository>();
-        services.AddScoped<IGenericRepository<WorkType>, WorkTypeRepository>();
-        services.AddScoped<IGenericRepository<EmploymentType>, EmploymentTypeRepository>();
+        //services.AddScoped<IGenericRepository<Category>, CategoryRepository>();
+        //services.AddScoped<IGenericRepository<WorkType>, WorkTypeRepository>();
+        //services.AddScoped<IGenericRepository<EmploymentType>, EmploymentTypeRepository>();
         services.AddScoped<IMiniGenericRepository<VacancyWorkTypes>, VacancyWorkTypesRepository>();
         services.AddScoped<IMiniGenericRepository<VacancyEmploymentTypes>, VacancyEmploymentTypesRepository>();
         services.AddScoped<IGenericRepository<Vacancy>, VacancyRepository>();

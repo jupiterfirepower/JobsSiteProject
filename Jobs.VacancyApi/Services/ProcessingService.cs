@@ -13,8 +13,8 @@ public class ProcessingService(IGenericRepository<Vacancy> repository,
     IGenericRepository<WorkType> workTypesRepository, 
     IGenericRepository<EmploymentType> empRepository, 
     IGenericRepository<Category> categoryRepository,
-    IMiniGenericRepository<VacancyWorkTypes> vacancyWorkTypesRepository,
-    IMiniGenericRepository<VacancyEmploymentTypes> vacancyEmploymentTypesRepository,
+    //IMiniGenericRepository<VacancyWorkTypes> vacancyWorkTypesRepository,
+    //IMiniGenericRepository<VacancyEmploymentTypes> vacancyEmploymentTypesRepository,
     JobsDbContext context,
     IMapper mapper) : IProcessingService
 {

@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Jobs.ReferenceApi\Jobs.ReferenceApi.csproj" />
       <ProjectReference Include="..\Jobs.VacancyApi\Jobs.VacancyApi.csproj" />
     </ItemGroup>
 

@@ -1,4 +1,4 @@
-create or replace procedure sp_save_vac_worktypessp_save_vac_worktypes(
+create or replace procedure sp_save_vac_worktypes(
     in vacancyId int, 
     in workTypes varchar(10)
 ) 

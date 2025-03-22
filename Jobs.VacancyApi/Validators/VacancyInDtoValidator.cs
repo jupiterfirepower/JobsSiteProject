@@ -1,7 +1,7 @@
 using FluentValidation;
 using Jobs.DTO.In;
 
-namespace Jobs.DTO.Validators;
+namespace Jobs.VacancyApi.Validators;
 
 public class VacancyInDtoValidator : AbstractValidator<VacancyInDto>
 {
@@ -37,7 +37,7 @@ public class VacancyInDtoValidator : AbstractValidator<VacancyInDto>
             .InclusiveBetween(1,5)
             .When(current => current.WorkTypeId.HasValue)
             .WithMessage("Invalid WorkTypeId.");
-        
+
         RuleFor(current => current.EmploymentTypeId)
             .GreaterThan(0)
             .InclusiveBetween(1,5)

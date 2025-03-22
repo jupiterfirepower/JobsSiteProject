@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Jobs.DTO;
 
-public class EmploymentTypeDto
+public record EmploymentTypeDto
 {
     [JsonPropertyName("employmentTypeId")]
     public int EmploymentTypeId { get; init; }

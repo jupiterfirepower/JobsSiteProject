@@ -1,5 +1,6 @@
 using Jobs.Common.Contracts;
 using Jobs.Entities.Models;
+using Jobs.ReferenceApi.Repositories;
 using Jobs.VacancyApi.Data;
 using Jobs.VacancyApi.Repository;
 using JobsWebApiNUnitTests.Helper;
